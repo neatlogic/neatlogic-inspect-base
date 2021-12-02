@@ -39,6 +39,24 @@ public enum InspectStatus implements IEnum {
         return cssClass;
     }
 
+    public static String getText(String _value) {
+        for (InspectStatus s : InspectStatus.values()) {
+            if (s.getValue().equalsIgnoreCase(_value)) {
+                return s.getText();
+            }
+        }
+        return "";
+    }
+
+    public static InspectStatus getInspectStatus(String _value) {
+        for (InspectStatus s : InspectStatus.values()) {
+            if (s.getValue().equalsIgnoreCase(_value)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
     @Override
     public List getValueTextList() {
         JSONArray array = new JSONArray();
