@@ -5,7 +5,7 @@
         <artifactId>codedriver-parent</artifactId>
         <version>[1.0.0, 2.0.0]</version>
     </parent>
-    <artifactId>codedriver-tagent-base</artifactId>
+    <artifactId>codedriver-inspect-base</artifactId>
     <version>0.1.0.0-SNAPSHOT</version>
     <build>
         <resources>
@@ -33,11 +33,6 @@
             <artifactId>codedriver-framework</artifactId>
             <version>0.1.0.0-SNAPSHOT</version>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.techsure</groupId>
-            <artifactId>codedriver-cmdb-base</artifactId>
-            <version>0.1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
