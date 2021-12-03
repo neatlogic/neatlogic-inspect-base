@@ -8,6 +8,9 @@
                combop_id as combopId
         from inspect_ci_combop
     </select>
+    <select id="getCombopIdByCiId" resultType="java.lang.Long">
+        select combop_id from inspect_ci_combop where ci_id = #{value}
+    </select>
 
 
     <insert id="insertInspectCiCombopList" parameterType="codedriver.framework.cmdb.dto.ci.CiVo">
