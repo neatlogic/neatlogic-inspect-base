@@ -3,20 +3,21 @@
 <mapper namespace="codedriver.framework.inspect.dao.mapper.InspectMapper">
 
 
-    <select id="searchInspectCiCombopList" resultType="codedriver.framework.cmdb.dto.ci.CiVo">
-        select ci_id as id,
-               combop_id as combopId
-        from inspect_ci_combop
+    <select id="searchInspectCiCombopList" resultType="codedriver.framework.inspect.dto.InspectCiCombopVo">
+        select icc.ci_id     as id,
+               icc.combop_id as combopId,
+               ac.name       as combopName
+        from inspect_ci_combop icc
+                 join autoexec_combop ac on icc.combop_id=ac.id
     </select>
     <select id="getCombopIdByCiId" resultType="java.lang.Long">
         select combop_id from inspect_ci_combop where ci_id = #{value}
     </select>
 
-
-    <insert id="insertInspectCiCombopList" parameterType="codedriver.framework.cmdb.dto.ci.CiVo">
-        insert into inspect_ci_combop(ci_id, combop_id)
+    <insert id="replaceInspectCiCombopList">
+        replace into inspect_ci_combop(ci_id, combop_id)
         values
-        <foreach collection="ciVoList" item="ciVo" open="(" separator="," close=")">
+        <foreach collection="ciVoList" item="ciVo" separator=",">
             ( #{ciVo.id}, #{ciVo.combopId})
         </foreach>
     </insert>
