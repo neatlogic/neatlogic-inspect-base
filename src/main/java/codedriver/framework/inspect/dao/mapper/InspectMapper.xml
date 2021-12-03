@@ -3,12 +3,13 @@
 <mapper namespace="codedriver.framework.inspect.dao.mapper.InspectMapper">
 
 
-    <select id="searchInspectCiCombopList" resultType="codedriver.framework.cmdb.dto.ci.CiVo">
-        select ci_id     as id,
-               combop_id as combopId
-        from inspect_ci_combop
+    <select id="searchInspectCiCombopList" resultType="codedriver.framework.inspect.dto.InspectCiCombopVo">
+        select icc.ci_id     as id,
+               icc.combop_id as combopId,
+               ac.name       as combopName
+        from inspect_ci_combop icc
+                 join autoexec_combop ac on icc.combop_id=ac.id
     </select>
-
 
     <insert id="replaceInspectCiCombopList" parameterType="list">
         replace into inspect_ci_combop(ci_id, combop_id)
