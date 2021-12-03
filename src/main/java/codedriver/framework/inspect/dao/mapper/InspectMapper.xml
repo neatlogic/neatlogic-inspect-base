@@ -10,6 +10,9 @@
         from inspect_ci_combop icc
                  join autoexec_combop ac on icc.combop_id=ac.id
     </select>
+    <select id="getCombopIdByCiId" resultType="java.lang.Long">
+        select combop_id from inspect_ci_combop where ci_id = #{value}
+    </select>
 
     <insert id="replaceInspectCiCombopList">
         replace into inspect_ci_combop(ci_id, combop_id)
