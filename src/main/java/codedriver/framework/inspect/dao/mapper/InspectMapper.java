@@ -9,6 +9,7 @@ public interface InspectMapper {
     List<InspectCiCombopVo> searchInspectCiCombopList();
 
     void replaceInspectCiCombopList(@Param("ciVoList") List<InspectCiCombopVo> ciVoList);
+
     Long getCombopIdByCiId(Long ciId);
 
 
