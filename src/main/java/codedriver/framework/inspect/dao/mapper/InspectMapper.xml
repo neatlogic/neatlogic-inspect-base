@@ -11,7 +11,7 @@
                  join autoexec_combop ac on icc.combop_id=ac.id
     </select>
 
-    <insert id="replaceInspectCiCombopList" parameterType="list">
+    <insert id="replaceInspectCiCombopList">
         replace into inspect_ci_combop(ci_id, combop_id)
         values
         <foreach collection="ciVoList" item="ciVo" separator=",">
