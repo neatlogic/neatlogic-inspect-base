@@ -12,6 +12,8 @@ public class InspectCiCombopVo extends CiVo {
     private String combopName;
 
     public InspectCiCombopVo(CiVo ciVo) {
+        super.id = ciVo.getId();
+        super.name = ciVo.getName();
         super.label = ciVo.getLabel();
     }
 
