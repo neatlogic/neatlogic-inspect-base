@@ -8,5 +8,7 @@ public interface InspectScheduleMapper {
 
     List<InspectScheduleVo> getInspectScheduleList();
 
+    InspectScheduleVo getInspectScheduleById(Long id);
+
 
 }

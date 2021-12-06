@@ -37,5 +37,23 @@
         FROM
             `inspect_schedule` a
     </select>
+
+    <select id="getInspectScheduleById" resultType="codedriver.framework.inspect.dto.InspectScheduleVo">
+        SELECT
+            `id`,
+            `ci_id` AS ciId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        FROM
+            `inspect_schedule` a
+        WHERE
+            `id` = #{value}
+    </select>
 </mapper>
 
