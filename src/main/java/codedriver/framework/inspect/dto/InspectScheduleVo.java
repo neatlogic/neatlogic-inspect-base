@@ -43,9 +43,10 @@ public class InspectScheduleVo {
     public InspectScheduleVo() {
     }
 
-    public InspectScheduleVo(Long ciId, String ciLabel) {
+    public InspectScheduleVo(Long ciId, String ciLabel, String ciName) {
         this.ciId = ciId;
         this.ciLabel = ciLabel;
+        this.ciName = ciName;
     }
 
     public Long getId() {
