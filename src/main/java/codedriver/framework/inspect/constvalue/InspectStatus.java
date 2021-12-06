@@ -12,10 +12,10 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 
 public enum InspectStatus implements IEnum {
-    NORMAL("normal", "正常", "normal"),
-    WARN("warn", "告警", "warn"),
-    CRITICAL("critical", "严重", "critical"),
-    FATAL("fatal", "致命", "fatal");
+    NORMAL("normal", "正常", "text-success"),
+    WARN("warn", "告警", "text-warning"),
+    CRITICAL("critical", "严重", "text-error"),
+    FATAL("fatal", "致命", "bg-error");
 
     private final String value;
     private final String text;
