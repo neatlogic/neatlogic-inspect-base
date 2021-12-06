@@ -38,7 +38,7 @@
             `inspect_schedule` a
     </select>
 
-    <select id="getInspectScheduleById" resultType="codedriver.framework.inspect.dto.InspectScheduleVo">
+    <select id="getInspectScheduleById" parameterType="java.lang.Long" resultType="codedriver.framework.inspect.dto.InspectScheduleVo">
         SELECT
             `id`,
             `ci_id` AS ciId,
@@ -55,5 +55,42 @@
         WHERE
             `id` = #{value}
     </select>
+    
+    <update id="updateInspectSchedule" parameterType="codedriver.framework.inspect.dto.InspectScheduleVo">
+        UPDATE `inspect_schedule`
+        SET `cron` = #{cron},
+            `begin_time` = #{beginTime},
+            `end_time` = #{endTime},
+            `is_active` = #{isActive},
+            `lcd` = NOW(3),
+            `lcu` = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <insert id="insertInspectSchedule">
+        INSERT INTO `inspect_schedule` (
+            `id`,
+            `ci_id`,
+            `cron`,
+            `begin_time`,
+            `end_time`,
+            `is_active`,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        ) VALUES (
+            #{id},
+            #{ciId},
+            #{cron},
+            #{beginTime},
+            #{endTime},
+            #{isActive},
+            NOW(3),
+            #{fcu},
+            NOW(3),
+            #{lcu}
+        )
+    </insert>
 </mapper>
 

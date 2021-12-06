@@ -10,5 +10,9 @@ public interface InspectScheduleMapper {
 
     InspectScheduleVo getInspectScheduleById(Long id);
 
+    int updateInspectSchedule(InspectScheduleVo vo);
+
+    int insertInspectSchedule(InspectScheduleVo vo);
+
 
 }
