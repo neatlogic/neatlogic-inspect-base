@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="codedriver.framework.inspect.dao.mapper.InspectScheduleMapper">
+
+    <resultMap id="scheduleVoMap" type="codedriver.framework.inspect.dto.InspectScheduleVo">
+        <result column="id" property="id"/>
+        <result column="ciId" property="ciId"/>
+        <result column="cron" property="cron"/>
+        <result column="beginTime" property="beginTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="isActive" property="isActive"/>
+        <result column="fcd" property="fcd"/>
+        <result column="fcu" property="fcu"/>
+        <result column="lcd" property="lcd"/>
+        <result column="lcu" property="lcu"/>
+        <association property="lcuVo" javaType="codedriver.framework.dto.UserVo">
+            <result property="uuid" column="lcu" />
+            <result property="userId" column="userId" />
+            <result property="userName" column="userName" />
+        </association>
+    </resultMap>
+
+    <select id="getInspectScheduleList" resultMap="scheduleVoMap">
+        SELECT
+            `id`,
+            `ci_id` AS ciId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`,
+            ( SELECT `user_id` FROM `user` WHERE `uuid` = a.`lcu` ) AS userId,
+            ( SELECT `user_name` FROM `user` WHERE `uuid` = a.`lcu` ) AS userName
+        FROM
+            `inspect_schedule` a
+    </select>
+</mapper>
+
