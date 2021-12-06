@@ -49,9 +49,6 @@ public class InspectScheduleVo {
     }
 
     public Long getId() {
-        //if (id == null) {
-        //    id = SnowflakeUtil.uniqueLong();
-        //}
         return id;
     }
 

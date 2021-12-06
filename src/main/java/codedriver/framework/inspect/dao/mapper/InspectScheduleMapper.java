@@ -12,6 +12,8 @@ public interface InspectScheduleMapper {
 
     int updateInspectSchedule(InspectScheduleVo vo);
 
+    int updateInspectScheduleStatus(InspectScheduleVo vo);
+
     int insertInspectSchedule(InspectScheduleVo vo);
 
 

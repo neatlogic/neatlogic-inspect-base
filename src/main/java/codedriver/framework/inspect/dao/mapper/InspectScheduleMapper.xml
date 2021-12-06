@@ -67,6 +67,14 @@
         WHERE `id` = #{id}
     </update>
 
+    <update id="updateInspectScheduleStatus">
+        UPDATE `inspect_schedule`
+        SET `is_active` = #{isActive},
+            `lcd` = NOW(3),
+            `lcu` = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
     <insert id="insertInspectSchedule">
         INSERT INTO `inspect_schedule` (
             `id`,
