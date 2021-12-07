@@ -1,12 +1,12 @@
 package codedriver.framework.inspect.dto;
 
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.dto.UserVo;
+import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-public class InspectScheduleVo {
+public class InspectScheduleVo extends BaseEditorVo {
 
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
@@ -20,18 +20,6 @@ public class InspectScheduleVo {
     private Date endTime;
     @EntityField(name = "状态(0:禁用，1：启用)", type = ApiParamType.INTEGER)
     private Integer isActive;
-    @EntityField(name = "创建者uuid", type = ApiParamType.STRING)
-    private String fcu;
-    @EntityField(name = "创建日期", type = ApiParamType.STRING)
-    private Date fcd;
-    @EntityField(name = "修改者uuid", type = ApiParamType.STRING)
-    private String lcu;
-    @EntityField(name = "修改日期", type = ApiParamType.STRING)
-    private Date lcd;
-    @EntityField(name = "创建者")
-    private UserVo fcuVo;
-    @EntityField(name = "修改者", type = ApiParamType.STRING)
-    private UserVo lcuVo;
 
     @EntityField(name = "ciLabel", type = ApiParamType.STRING)
     private String ciLabel;
@@ -95,54 +83,6 @@ public class InspectScheduleVo {
 
     public void setIsActive(Integer isActive) {
         this.isActive = isActive;
-    }
-
-    public String getFcu() {
-        return fcu;
-    }
-
-    public void setFcu(String fcu) {
-        this.fcu = fcu;
-    }
-
-    public Date getFcd() {
-        return fcd;
-    }
-
-    public void setFcd(Date fcd) {
-        this.fcd = fcd;
-    }
-
-    public String getLcu() {
-        return lcu;
-    }
-
-    public void setLcu(String lcu) {
-        this.lcu = lcu;
-    }
-
-    public Date getLcd() {
-        return lcd;
-    }
-
-    public void setLcd(Date lcd) {
-        this.lcd = lcd;
-    }
-
-    public UserVo getFcuVo() {
-        return fcuVo;
-    }
-
-    public void setFcuVo(UserVo fcuVo) {
-        this.fcuVo = fcuVo;
-    }
-
-    public UserVo getLcuVo() {
-        return lcuVo;
-    }
-
-    public void setLcuVo(UserVo lcuVo) {
-        this.lcuVo = lcuVo;
     }
 
     public String getCiLabel() {
