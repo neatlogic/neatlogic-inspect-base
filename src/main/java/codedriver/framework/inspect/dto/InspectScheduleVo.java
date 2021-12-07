@@ -3,13 +3,17 @@ package codedriver.framework.inspect.dto;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class InspectScheduleVo extends BaseEditorVo {
 
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "uuid", type = ApiParamType.STRING)
+    private String uuid;
     @EntityField(name = "ciId", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "cron", type = ApiParamType.STRING)
@@ -43,6 +47,17 @@ public class InspectScheduleVo extends BaseEditorVo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        if (StringUtils.isBlank(uuid)) {
+            uuid = UUID.randomUUID().toString().replace("-", "");
+        }
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public Long getCiId() {
