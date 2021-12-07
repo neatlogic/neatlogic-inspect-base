@@ -30,7 +30,7 @@ public class InspectScheduleVo extends BaseEditorVo {
     @EntityField(name = "ciName", type = ApiParamType.STRING)
     private String ciName;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
-    private Integer execCount;
+    private Integer execCount = 0;
 
     public InspectScheduleVo() {
     }
