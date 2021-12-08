@@ -10,6 +10,8 @@ public interface InspectScheduleMapper {
 
     InspectScheduleVo getInspectScheduleById(Long id);
 
+    InspectScheduleVo getInspectScheduleByUuid(String uuid);
+
     int updateInspectSchedule(InspectScheduleVo vo);
 
     int updateInspectScheduleStatus(InspectScheduleVo vo);

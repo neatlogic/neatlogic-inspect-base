@@ -4,6 +4,7 @@
 
     <resultMap id="scheduleVoMap" type="codedriver.framework.inspect.dto.InspectScheduleVo">
         <result column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
         <result column="ciId" property="ciId"/>
         <result column="cron" property="cron"/>
         <result column="beginTime" property="beginTime"/>
@@ -23,6 +24,7 @@
     <select id="getInspectScheduleList" resultMap="scheduleVoMap">
         SELECT
             `id`,
+            `uuid`,
             `ci_id` AS ciId,
             `cron`,
             `begin_time` AS beginTime,
@@ -41,6 +43,7 @@
     <select id="getInspectScheduleById" parameterType="java.lang.Long" resultType="codedriver.framework.inspect.dto.InspectScheduleVo">
         SELECT
             `id`,
+            `uuid`,
             `ci_id` AS ciId,
             `cron`,
             `begin_time` AS beginTime,
@@ -55,7 +58,26 @@
         WHERE
             `id` = #{value}
     </select>
-    
+
+    <select id="getInspectScheduleByUuid" parameterType="java.lang.String" resultType="codedriver.framework.inspect.dto.InspectScheduleVo">
+        SELECT
+            `id`,
+            `uuid`,
+            `ci_id` AS ciId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        FROM
+            `inspect_schedule` a
+        WHERE
+            `uuid` = #{value}
+    </select>
+
     <update id="updateInspectSchedule" parameterType="codedriver.framework.inspect.dto.InspectScheduleVo">
         UPDATE `inspect_schedule`
         SET `cron` = #{cron},
@@ -78,6 +100,7 @@
     <insert id="insertInspectSchedule">
         INSERT INTO `inspect_schedule` (
             `id`,
+            `uuid`,
             `ci_id`,
             `cron`,
             `begin_time`,
@@ -89,6 +112,7 @@
             `lcu`
         ) VALUES (
             #{id},
+            #{uuid},
             #{ciId},
             #{cron},
             #{beginTime},
