@@ -3,7 +3,7 @@ package codedriver.framework.inspect.exception;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class InspectDefLessNameException extends ApiRuntimeException {
-    public InspectDefLessNameException() {
-        super("缺少名称参数");
+    public InspectDefLessNameException(int i) {
+        super("第" + i + "规则缺少名称参数");
     }
 }
