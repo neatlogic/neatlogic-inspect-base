@@ -7,7 +7,7 @@ package codedriver.framework.inspect.auth;
 
 import codedriver.framework.auth.core.AuthBase;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class INSPECT_MODIFY extends AuthBase {
@@ -33,6 +33,6 @@ public class INSPECT_MODIFY extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths(){
-        return Collections.singletonList(INSPECT_BASE.class);
+        return  Arrays.asList(INSPECT_AUTOEXEC_JOB.class,INSPECT_BASE.class);
     }
 }

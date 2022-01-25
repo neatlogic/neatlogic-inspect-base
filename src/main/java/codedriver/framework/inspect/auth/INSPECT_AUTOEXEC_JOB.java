@@ -7,15 +7,18 @@ package codedriver.framework.inspect.auth;
 
 import codedriver.framework.auth.core.AuthBase;
 
-public class INSPECT_BASE extends AuthBase {
+import java.util.Collections;
+import java.util.List;
+
+public class INSPECT_AUTOEXEC_JOB extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检基础权限";
+        return "巡检作业权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告";
+        return "发起巡检作业，批量巡检作业、定时巡检作业";
     }
 
     @Override
@@ -25,6 +28,11 @@ public class INSPECT_BASE extends AuthBase {
 
     @Override
     public Integer getSort() {
-        return 2;
+        return 3;
+    }
+
+    @Override
+    public List<Class<? extends AuthBase>> getIncludeAuths() {
+        return Collections.singletonList(INSPECT_BASE.class);
     }
 }
