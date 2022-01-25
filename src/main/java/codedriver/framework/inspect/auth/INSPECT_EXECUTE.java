@@ -13,7 +13,7 @@ import java.util.List;
 public class INSPECT_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检单个和批量作业权限";
+        return "巡检单个执行或批量执行权限";
     }
 
     @Override

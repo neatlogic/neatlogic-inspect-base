@@ -13,7 +13,7 @@ import java.util.List;
 public class INSPECT_SCHEDULE_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检定时作业权限";
+        return "巡检定时执行权限";
     }
 
     @Override
