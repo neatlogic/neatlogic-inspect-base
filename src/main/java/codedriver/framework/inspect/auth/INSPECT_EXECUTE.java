@@ -7,18 +7,18 @@ package codedriver.framework.inspect.auth;
 
 import codedriver.framework.auth.core.AuthBase;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class INSPECT_MODIFY extends AuthBase {
+public class INSPECT_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检管理员权限";
+        return "巡检单个和批量作业权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "设置阈值规则，预定义模型对应的巡检工具";
+        return "发起批量巡检作业、单个巡检作业";
     }
 
     @Override
@@ -28,11 +28,11 @@ public class INSPECT_MODIFY extends AuthBase {
 
     @Override
     public Integer getSort() {
-        return 1;
+        return 4;
     }
 
     @Override
-    public List<Class<? extends AuthBase>> getIncludeAuths(){
-        return  Arrays.asList(INSPECT_SCHEDULE_EXECUTE.class,INSPECT_BASE.class,INSPECT_EXECUTE.class);
+    public List<Class<? extends AuthBase>> getIncludeAuths() {
+        return Collections.singletonList(INSPECT_BASE.class);
     }
 }

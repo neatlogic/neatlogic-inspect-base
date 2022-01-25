@@ -10,15 +10,15 @@ import codedriver.framework.auth.core.AuthBase;
 import java.util.Collections;
 import java.util.List;
 
-public class INSPECT_AUTOEXEC_JOB extends AuthBase {
+public class INSPECT_SCHEDULE_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检作业权限";
+        return "巡检定时作业权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "发起巡检作业，批量巡检作业、定时巡检作业";
+        return "发起定时巡检作业";
     }
 
     @Override
