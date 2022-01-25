@@ -15,7 +15,7 @@ public class INSPECT_BASE extends AuthBase {
 
     @Override
     public String getAuthIntroduction() {
-        return "可以设置定时巡检和定时批量巡检";
+        return "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告";
     }
 
     @Override
