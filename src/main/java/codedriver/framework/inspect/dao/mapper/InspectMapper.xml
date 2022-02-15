@@ -131,6 +131,38 @@
         </if>
     </sql>
 
+    <sql id="resource_ipobject_from_join">
+        FROM
+        ${schemaName}
+        .
+        `resource_ipobject_detail`
+        a
+        left
+        join
+        autoexec_job_resource_inspect
+        ajri
+        on
+        ajri
+        .
+        resource_id
+        =
+        a
+        .
+        id
+        left
+        join
+        autoexec_job_phase_node
+        ajpn
+        on
+        ajpn
+        .
+        job_phase_id
+        =
+        ajri
+        .
+        phase_id
+    </sql>
+
     <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT a.`id`,
         a.name,
@@ -158,12 +190,7 @@
         a.maintenance_window,
         ajpn.id as inspectJobPhaseNodeId,
         ajpn.status as inspectJobstatus
-        FROM ${schemaName}.`resource_ipobject_detail` a
-        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
-        JOIN autoexec_job_phase_node ajpn ON ajpn.job_phase_id = ajri.phase_id
-        LEFT JOIN `autoexec_job_phase_node_runner` ajpnr ON ajpn.id = ajpnr.`node_id`
-        LEFT JOIN `runner_map` arm ON ajpnr.`runner_map_id` = arm.`id`
-        LEFT JOIN `runner` ap ON arm.`runner_id` = ap.`id`
+        <include refid="resource_ipobject_from_join"/>
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
@@ -172,9 +199,7 @@
 
     <select id="getInspectResourceCount" resultType="int">
         SELECT COUNT(DISTINCT (a.`id`))
-        FROM ${schemaName}.`resource_ipobject_detail` a
-        left join autoexec_job_resource_inspect ajri on ajri.resource_id = a.id
-        left join autoexec_job_phase_node ajpn on ajpn.job_phase_id = ajri.phase_id
+        <include refid="resource_ipobject_from_join"/>
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
@@ -182,9 +207,7 @@
 
     <select id="getInspectResourceIdList" resultType="java.lang.Long">
         SELECT distinct (a.`id`)
-        FROM ${schemaName}.`resource_ipobject_detail` a
-        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
-        left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id
+        <include refid="resource_ipobject_from_join"/>
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
