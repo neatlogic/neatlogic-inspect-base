@@ -8,10 +8,12 @@
                icc.combop_id as combopId,
                ac.name       as combopName
         from inspect_ci_combop icc
-                 join autoexec_combop ac on icc.combop_id=ac.id
+                 join autoexec_combop ac on icc.combop_id = ac.id
     </select>
     <select id="getCombopIdByCiId" resultType="java.lang.Long">
-        select combop_id from inspect_ci_combop where ci_id = #{value}
+        select combop_id
+        from inspect_ci_combop
+        where ci_id = #{value}
     </select>
 
     <insert id="replaceInspectCiCombopList">
@@ -21,6 +23,173 @@
             ( #{ciVo.id}, #{ciVo.combopId})
         </foreach>
     </insert>
+
+    <resultMap id="inspectResourceMap" type="codedriver.framework.inspect.dto.InspectResourceVo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="abbr_name" property="abbrName"/>
+        <result column="type_id" property="typeId"/>
+        <result column="type_name" property="typeName"/>
+        <result column="type_label" property="typeLabel"/>
+        <result column="inspect_status" property="inspectStatus"/>
+        <result column="inspect_time" property="inspectTime"/>
+        <result column="monitor_status" property="monitorStatus"/>
+        <result column="monitor_time" property="monitorTime"/>
+        <result column="maintenance_window" property="maintenanceWindow"/>
+        <result column="description" property="description"/>
+        <result column="network_area" property="networkArea"/>
+        <result column="port" property="port"/>
+        <result column="ip" property="ip"/>
+        <result column="state_id" property="stateId"/>
+        <result column="state_name" property="stateName"/>
+        <result column="datacenter_id" property="dataCenterId"/>
+        <result column="datacenter_name" property="dataCenterName"/>
+        <result column="env_id" property="envId"/>
+        <result column="env_name" property="envName"/>
+        <result column="app_module_id" property="appModuleId"/>
+        <result column="app_module_name" property="appModuleName"/>
+        <result column="app_module_abbr_name" property="appModuleAbbrName"/>
+        <result column="app_system_id" property="appSystemId"/>
+        <result column="app_system_name" property="appSystemName"/>
+        <result column="app_system_abbr_name" property="appSystemAbbrName"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="cluster_name" property="clusterName"/>
+        <result column="cluster_type_id" property="clusterTypeId"/>
+        <collection property="bgList" ofType="codedriver.framework.cmdb.dto.resourcecenter.BgVo">
+            <id column="bg_id" property="bgId"/>
+            <result column="bg_name" property="bgName"/>
+        </collection>
+        <collection property="ownerList" ofType="codedriver.framework.cmdb.dto.resourcecenter.OwnerVo">
+            <id column="user_id" property="userId"/>
+            <result column="user_uuid" property="uuid"/>
+            <result column="user_name" property="userName"/>
+        </collection>
+        <collection property="allIp" ofType="codedriver.framework.cmdb.dto.resourcecenter.IpVo">
+            <id column="allip_id" property="id"/>
+            <result column="allip_ip" property="ip"/>
+            <result column="allip_label" property="label"/>
+        </collection>
+        <collection property="jobPhaseNodeVo" ofType="codedriver.framework.autoexec.dto.job.AutoexecJobPhaseNodeVo">
+            <id column="inspectJobPhaseNodeId" property="id"/>
+            <result column="jobPhaseNodeStatus" property="status"/>
+        </collection>
+    </resultMap>
+
+    <sql id="resource_ipobject_where">
+        <if test="keyword != null and keyword != ''">
+            AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
+            LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="typeIdList != null and typeIdList.size() > 0">
+            AND a.`type_id` IN
+            <foreach collection="typeIdList" item="typeId" open="(" separator="," close=")">
+                #{typeId}
+            </foreach>
+        </if>
+        <if test="stateIdList != null and stateIdList.size() > 0">
+            AND a.`state_id` IN
+            <foreach collection="stateIdList" item="stateId" open="(" separator="," close=")">
+                #{stateId}
+            </foreach>
+        </if>
+        <if test="envIdList != null and envIdList.size() > 0">
+            AND a.`env_id` IN
+            <foreach collection="envIdList" item="envId" open="(" separator="," close=")">
+                #{envId}
+            </foreach>
+        </if>
+        <if test="appSystemIdList != null and appSystemIdList.size() > 0">
+            AND a.`id` IN
+            <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                #{appSystemId}
+            </foreach>
+        </if>
+        <if test="appModuleIdList != null and appModuleIdList.size() > 0">
+            AND a.`app_module_id` IN
+            <foreach collection="appModuleIdList" item="appModuleId" open="(" separator="," close=")">
+                #{appModuleId}
+            </foreach>
+        </if>
+        <if test="idList != null and idList.size() > 0">
+            AND a.`id` IN
+            <foreach collection="idList" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        <if test="inspectStatusList != null and inspectStatusList.size() > 0">
+            AND a.`inspect_status` IN
+            <foreach collection="inspectStatusList" item="inspectStatus" open="(" separator="," close=")">
+                #{inspectStatus}
+            </foreach>
+        </if>
+        <if test="inspectJobPhaseNodeStatusList != null and inspectJobPhaseNodeStatusList.size() > 0">
+            AND ajpn.`status` IN
+            <foreach collection="inspectJobPhaseNodeStatusList" item="inspectJobPhaseNodeStatus" open="("
+                     separator="," close=")">
+                #{inspectJobPhaseNodeStatus}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
+        SELECT a.`id`,
+        a.name,
+        a.type_label,
+        a.ip,
+        a.port,
+        a.description,
+        a.monitor_status,
+        a.inspect_status,
+        a.type_id,
+        a.type_name,
+        a.inspect_time,
+        a.monitor_time,
+        a.network_area,
+        a.env_id,
+        a.env_name,
+        a.bg_id,
+        a.bg_name,
+        a.user_id,
+        a.user_uuid,
+        a.user_name,
+        a.allip_id,
+        a.allip_ip,
+        a.allip_label,
+        a.maintenance_window,
+        ajpn.id as inspectJobPhaseNodeId,
+        ajpn.status as inspectJobstatus
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
+        JOIN autoexec_job_phase_node ajpn ON ajpn.job_phase_id = ajri.phase_id
+        LEFT JOIN `autoexec_job_phase_node_runner` ajpnr ON ajpn.id = ajpnr.`node_id`
+        LEFT JOIN `runner_map` arm ON ajpnr.`runner_map_id` = arm.`id`
+        LEFT JOIN `runner` ap ON arm.`runner_id` = ap.`id`
+        WHERE a.`id` IN
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="getInspectResourceCount" resultType="int">
+        SELECT COUNT(DISTINCT (a.`id`))
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id = a.id
+        left join autoexec_job_phase_node ajpn on ajpn.job_phase_id = ajri.phase_id
+        <where>
+            <include refid="resource_ipobject_where"/>
+        </where>
+    </select>
+
+    <select id="getInspectResourceIdList" resultType="java.lang.Long">
+        SELECT distinct (a.`id`)
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
+        left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id
+        <where>
+            <include refid="resource_ipobject_where"/>
+        </where>
+        LIMIT #{startNum}, #{pageSize}
+    </select>
 
 
 </mapper>
