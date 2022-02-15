@@ -132,35 +132,9 @@
     </sql>
 
     <sql id="resource_ipobject_from_join">
-        FROM
-        ${schemaName}
-        .
-        `resource_ipobject_detail`
-        a
-        left
-        join
-        autoexec_job_resource_inspect
-        ajri
-        on
-        ajri
-        .
-        resource_id
-        =
-        a
-        .
-        id
-        left
-        join
-        autoexec_job_phase_node
-        ajpn
-        on
-        ajpn
-        .
-        job_phase_id
-        =
-        ajri
-        .
-        phase_id
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
+        left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id
     </sql>
 
     <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
