@@ -140,7 +140,7 @@
     <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT a.*,
         ajpn.id as inspectJobPhaseNodeId,
-        ajpn.status as inspectJobstatus
+        ajpn.status as jobPhaseNodeStatus
         <include refid="resource_ipobject_from_join"/>
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
