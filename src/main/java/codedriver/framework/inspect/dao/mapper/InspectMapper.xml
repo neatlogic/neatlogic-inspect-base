@@ -71,6 +71,7 @@
         </collection>
         <collection property="jobPhaseNodeVo" ofType="codedriver.framework.autoexec.dto.job.AutoexecJobPhaseNodeVo">
             <id column="inspectJobPhaseNodeId" property="id"/>
+            <result column="jobId" property="jobId"/>
             <result column="jobPhaseNodeStatus" property="status"/>
         </collection>
     </resultMap>
@@ -140,6 +141,7 @@
     <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT a.*,
         ajpn.id as inspectJobPhaseNodeId,
+        ajpn.`job_id` AS jobId,
         ajpn.status as jobPhaseNodeStatus
         <include refid="resource_ipobject_from_join"/>
         WHERE a.`id` IN
