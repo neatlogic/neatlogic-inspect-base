@@ -76,7 +76,7 @@
         </collection>
     </resultMap>
 
-    <sql id="resource_ipobject_where">
+    <sql id="resource_inspect_autoexec_job_where">
         <if test="keyword != null and keyword != ''">
             AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
             LIKE CONCAT('%', #{keyword}, '%'))
@@ -132,18 +132,81 @@
         </if>
     </sql>
 
-    <sql id="resource_ipobject_from_join">
+    <sql id="resource_inspect_autoexec_job_from_join">
         FROM ${schemaName}.`resource_ipobject_detail` a
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id AND ajpn.resource_id = a.id
     </sql>
+
+    <sql id="resource_inspect_autoexec_job_node_where">
+        <if test="searchVo.keyword != null and searchVo.keyword != ''">
+            AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`port`
+            LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+        </if>
+        <if test="searchVo.typeIdList != null and searchVo.typeIdList.size() > 0">
+            AND a.`type_id` IN
+            <foreach collection="searchVo.typeIdList" item="typeId" open="(" separator="," close=")">
+                #{typeId}
+            </foreach>
+        </if>
+        <if test="searchVo.stateIdList != null and searchVo.stateIdList.size() > 0">
+            AND a.`state_id` IN
+            <foreach collection="searchVo.stateIdList" item="stateId" open="(" separator="," close=")">
+                #{stateId}
+            </foreach>
+        </if>
+        <if test="searchVo.envIdList != null and searchVo.envIdList.size() > 0">
+            AND a.`env_id` IN
+            <foreach collection="searchVo.envIdList" item="envId" open="(" separator="," close=")">
+                #{envId}
+            </foreach>
+        </if>
+        <if test="searchVo.appSystemIdList != null and searchVo.appSystemIdList.size() > 0">
+            AND a.`id` IN
+            <foreach collection="searchVo.appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                #{appSystemId}
+            </foreach>
+        </if>
+        <if test="searchVo.appModuleIdList != null and searchVo.appModuleIdList.size() > 0">
+            AND a.`app_module_id` IN
+            <foreach collection="searchVo.appModuleIdList" item="appModuleId" open="(" separator="," close=")">
+                #{appModuleId}
+            </foreach>
+        </if>
+        <if test="searchVo.idList != null and searchVo.idList.size() > 0">
+            AND a.`id` IN
+            <foreach collection="searchVo.idList" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+        <if test="searchVo.inspectStatusList != null and searchVo.inspectStatusList.size() > 0">
+            AND cci.`inspect_status` IN
+            <foreach collection="searchVo.inspectStatusList" item="inspectStatus" open="(" separator="," close=")">
+                #{inspectStatus}
+            </foreach>
+        </if>
+        <if test="searchVo.inspectJobPhaseNodeStatusList != null and searchVo.inspectJobPhaseNodeStatusList.size() > 0">
+            AND ajpn.`status` IN
+            <foreach collection="searchVo.inspectJobPhaseNodeStatusList" item="inspectJobPhaseNodeStatus" open="("
+                     separator="," close=")">
+                #{inspectJobPhaseNodeStatus}
+            </foreach>
+        </if>
+    </sql>
+
+    <sql id="resource_inspect_autoexec_job_node_from_join">
+        FROM ${schemaName}.resource_ipobject_detail a
+        LEFT JOIN autoexec_job_phase_node ajpn ON ajpn.resource_id = a.id
+        LEFT JOIN cmdb_cientity_inspect cci ON cci.ci_entity_id = a.id
+    </sql>
+
 
     <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT a.*,
         ajpn.id as inspectJobPhaseNodeId,
         ajpn.`job_id` AS jobId,
         ajpn.status as jobPhaseNodeStatus
-        <include refid="resource_ipobject_from_join"/>
+        <include refid="resource_inspect_autoexec_job_from_join"/>
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
@@ -152,21 +215,69 @@
 
     <select id="getInspectResourceCount" resultType="int">
         SELECT COUNT(DISTINCT (a.`id`))
-        <include refid="resource_ipobject_from_join"/>
+        <include refid="resource_inspect_autoexec_job_from_join"/>
         <where>
-            <include refid="resource_ipobject_where"/>
+            <include refid="resource_inspect_autoexec_job_where"/>
         </where>
     </select>
 
     <select id="getInspectResourceIdList" resultType="java.lang.Long">
         SELECT distinct (a.`id`)
-        <include refid="resource_ipobject_from_join"/>
+        <include refid="resource_inspect_autoexec_job_from_join"/>
         <where>
-            <include refid="resource_ipobject_where"/>
+            <include refid="resource_inspect_autoexec_job_where"/>
         </where>
         LIMIT #{startNum}, #{pageSize}
     </select>
 
+    <select id="getInspectAutoexecJobNodeResourceCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT (a.`id`))
+        <include refid="resource_inspect_autoexec_job_node_from_join"/>
+        <where>
+            <include refid="resource_inspect_autoexec_job_node_where"/>
+        </where>
+        and ajpn.job_id = #{jobId}
+    </select>
+
+    <select id="getInspectAutoexecJobNodeResourceIdList" resultType="java.lang.Long">
+        SELECT distinct (a.`id`)
+        <include refid="resource_inspect_autoexec_job_node_from_join"/>
+        <where>
+            <include refid="resource_inspect_autoexec_job_node_where"/>
+        </where>
+        and ajpn.job_id = #{jobId}
+        LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
+    </select>
+
+    <select id="getInspectHistoryResourceInfoListByIdList" parameterType="java.lang.Long"
+            resultMap="inspectResourceMap">
+        SELECT
+        a.ip,
+        a.port,
+        a.name,
+        a.type_name,
+        a.id,
+        a.network_area,
+        a.allip_id,
+        a.allip_ip,
+        a.allip_label,
+        a.bg_id,
+        a.bg_name,
+        a.user_id,
+        a.user_uuid,
+        a.user_name,
+        a.state_id,
+        cci.inspect_status,
+        cci.inspect_time,
+        ajpn.id as inspectJobPhaseNodeId,
+        ajpn.`job_id` AS jobId,
+        ajpn.status as jobPhaseNodeStatus
+        <include refid="resource_inspect_autoexec_job_node_from_join"/>
+        WHERE a.`id` IN
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>
 

@@ -16,7 +16,13 @@ public interface InspectMapper {
 
     List<InspectResourceVo> getInspectResourceVoListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
+    List<InspectResourceVo> getInspectHistoryResourceInfoListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
     int getInspectResourceCount(ResourceSearchVo searchVo);
 
     List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
+
+    int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+
+    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 }
