@@ -9,17 +9,29 @@ import codedriver.framework.autoexec.dto.job.AutoexecJobPhaseNodeVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.JSONObject;
 
 public class InspectResourceVo extends ResourceVo {
     private static final long serialVersionUID = -2029368211438672519L;
     @EntityField(name = "作业节点Vo", type = ApiParamType.JSONOBJECT)
     private AutoexecJobPhaseNodeVo jobPhaseNodeVo;
+    @EntityField(name = "巡检结果", type = ApiParamType.JSONOBJECT)
+    private JSONObject inspectResult;
 
     public AutoexecJobPhaseNodeVo getJobPhaseNodeVo() {
         return jobPhaseNodeVo;
     }
 
+    public JSONObject getInspectResult() {
+        return inspectResult;
+    }
+
+    public void setInspectResult(JSONObject inspectResult) {
+        this.inspectResult = inspectResult;
+    }
+
     public void setJobPhaseNodeVo(AutoexecJobPhaseNodeVo jobPhaseNodeVo) {
         this.jobPhaseNodeVo = jobPhaseNodeVo;
+
     }
 }
