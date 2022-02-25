@@ -196,6 +196,7 @@
 
     <sql id="resource_inspect_autoexec_job_node_from_join">
         FROM ${schemaName}.resource_ipobject_detail a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         LEFT JOIN autoexec_job_phase_node ajpn ON ajpn.resource_id = a.id
         LEFT JOIN cmdb_cientity_inspect cci ON cci.ci_entity_id = a.id
     </sql>
@@ -249,7 +250,7 @@
         LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
     </select>
 
-    <select id="getInspectHistoryResourceInfoListByIdList" parameterType="java.lang.Long"
+    <select id="getInspectResourceHistoryInfoByIdList" parameterType="java.lang.Long"
             resultMap="inspectResourceMap">
         SELECT
         a.ip,
@@ -279,6 +280,7 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
+        and ajpn.job_id = #{jobId}
     </select>
 
 </mapper>
