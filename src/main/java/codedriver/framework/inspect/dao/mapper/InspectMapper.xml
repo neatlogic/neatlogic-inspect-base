@@ -141,21 +141,14 @@
         </if>
     </sql>
 
-    <sql id="resource_inspect_autoexec_job_from_join_base">
+    <sql id="resource_inspect_autoexec_job_from_join">
         FROM ${schemaName}.`resource_ipobject_detail` a
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
         left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
-
-    </sql>
-
-    <sql id="resource_inspect_autoexec_job_from_join">
-        <include refid="resource_inspect_autoexec_job_from_join_base"></include>
         left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id AND ajpn.resource_id = a.id
     </sql>
-
-
 
     <sql id="resource_inspect_autoexec_job_node_where">
         <if test="searchVo.keyword != null and searchVo.keyword != ''">
@@ -219,13 +212,16 @@
     </sql>
 
     <sql id="resource_inspect_autoexec_job_node_from_join">
-        <include refid="resource_inspect_autoexec_job_from_join_base"></include>
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
+        left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
+        left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
+        left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
         LEFT JOIN autoexec_job_phase_node ajpn ON ajpn.resource_id = a.id
         LEFT JOIN cmdb_cientity_inspect cci ON cci.ci_entity_id = a.id AND cci.job_id= ajpn.job_id
     </sql>
 
-
-    <select id="getInspectResourceVoListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
+    <select id="getInspectResourceListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT a.*,
         ajpn.id as inspectJobPhaseNodeId,
         ajpn.`job_id` AS jobId,
@@ -277,7 +273,7 @@
         LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
     </select>
 
-    <select id="getInspectResourceVoListByIdListAndJobId" parameterType="java.lang.Long"
+    <select id="getInspectResourceListByIdListAndJobId" parameterType="java.lang.Long"
             resultMap="inspectResourceMap">
         SELECT
         a.ip,
