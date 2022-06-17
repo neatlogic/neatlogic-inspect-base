@@ -306,5 +306,40 @@
         and ajpn.job_id = #{jobId}
     </select>
 
+
+    <select id="getResourceScriptListByResourceIdList"
+            parameterType="java.util.List"
+            resultType="codedriver.framework.inspect.dto.InspectResourceScriptVo">
+        SELECT
+        `resource_id` AS resourceId,
+        `script_id` AS scriptId,
+        `config` as configStr
+        FROM `inspect_accessendpoint_script`
+        WHERE `resource_id` in
+        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
+            #{resourceId}
+        </foreach>
+    </select>
+
+    <select id="getResourceScriptByResourceId"
+            resultType="codedriver.framework.inspect.dto.InspectResourceScriptVo">
+        select `resource_id` as resourceId,
+               `script_id`   as scriptId,
+               `config`      as configStr
+        from `inspect_accessendpoint_script`
+        WHERE `resource_id` = #{value}
+    </select>
+
+    <insert id="insertResourceScript">
+        insert into `inspect_accessendpoint_script`(`resource_id`, `script_id`, `config`)
+        values (#{resourceId}, #{scriptId}, #{config})
+    </insert>
+    
+    <delete id="deleteResourceScriptByResourceId">
+        delete
+        from `inspect_accessendpoint_script`
+        where `resource_id` = #{value}
+    </delete>
+
 </mapper>
 
