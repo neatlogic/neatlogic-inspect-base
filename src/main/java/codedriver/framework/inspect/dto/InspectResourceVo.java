@@ -18,7 +18,7 @@ public class InspectResourceVo extends ResourceVo {
     @EntityField(name = "巡检结果", type = ApiParamType.JSONOBJECT)
     private JSONObject inspectResult;
     @EntityField(name = "脚本")
-    private InspectResourceScriptVo scriptVo;
+    private InspectResourceScriptVo script;
 
     public AutoexecJobPhaseNodeVo getJobPhaseNodeVo() {
         return jobPhaseNodeVo;
@@ -36,11 +36,11 @@ public class InspectResourceVo extends ResourceVo {
         this.jobPhaseNodeVo = jobPhaseNodeVo;
     }
 
-    public InspectResourceScriptVo getScriptVo() {
-        return scriptVo;
+    public InspectResourceScriptVo getScript() {
+        return script;
     }
 
-    public void setScriptVo(InspectResourceScriptVo scriptVo) {
-        this.scriptVo = scriptVo;
+    public void setScript(InspectResourceScriptVo script) {
+        this.script = script;
     }
 }
