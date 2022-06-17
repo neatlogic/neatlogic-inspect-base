@@ -14,9 +14,9 @@ public interface InspectMapper {
 
     Long getCombopIdByCiId(Long ciId);
 
-    List<InspectResourceVo> getInspectResourceVoListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    List<InspectResourceVo> getInspectResourceVoListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+    List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     int getInspectResourceCount(ResourceSearchVo searchVo);
 
