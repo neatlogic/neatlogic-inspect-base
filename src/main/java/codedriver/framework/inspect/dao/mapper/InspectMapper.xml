@@ -74,10 +74,8 @@
             <result column="jobId" property="jobId"/>
             <result column="jobPhaseNodeStatus" property="status"/>
         </collection>
-        <collection property="tagVoList" ofType="codedriver.framework.cmdb.dto.tag.TagVo">
-            <id column="tagId" property="id"/>
-            <result column="tagName" property="name"/>
-            <result column="tagDescription" property="description"/>
+        <collection property="tagList" ofType="java.lang.String">
+            <result column="tagName"/>
         </collection>
     </resultMap>
 
@@ -226,9 +224,7 @@
         ajpn.id as inspectJobPhaseNodeId,
         ajpn.`job_id` AS jobId,
         ajpn.status as jobPhaseNodeStatus,
-        ct.id as tagId,
-        ct.name as tagName,
-        ct.description as tagDescription
+        ct.name as tagName
         <include refid="resource_inspect_autoexec_job_from_join"/>
         left join cmdb_tag ct on ct.id = crrt.tag_id
         WHERE a.`id` IN
