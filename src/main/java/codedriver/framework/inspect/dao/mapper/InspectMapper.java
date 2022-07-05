@@ -15,7 +15,7 @@ public interface InspectMapper {
 
     Long getCombopIdByCiId(Long ciId);
 
-    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
@@ -23,13 +23,19 @@ public interface InspectMapper {
 
     InspectResourceScriptVo getResourceScriptByResourceId(Long resourceId);
 
-    int getInspectResourceCount(ResourceSearchVo searchVo);
+//    int getInspectResourceCount(ResourceSearchVo searchVo);
 
-    List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
+//    List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
 
     int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+
+    int getInspectResourceCountNew(String sql);
+
+    List<Long> getInspectResourceIdListNew(String sql);
+
+    List<InspectResourceVo> getInspectResourceListByIdListNew(String sql);
 
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
 
