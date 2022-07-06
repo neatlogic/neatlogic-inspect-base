@@ -24,7 +24,7 @@
         </foreach>
     </insert>
 
-    <resultMap id="inspectResourceMap" type="codedriver.framework.inspect.dto.InspectResourceVo">
+    <!--<resultMap id="inspectResourceMap" type="codedriver.framework.inspect.dto.InspectResourceVo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="abbr_name" property="abbrName"/>
@@ -77,7 +77,7 @@
         <collection property="tagList" ofType="java.lang.String">
             <result column="tagName"/>
         </collection>
-    </resultMap>
+    </resultMap>-->
 
     <resultMap id="inspectResourceMap2" type="codedriver.framework.inspect.dto.InspectResourceVo">
         <id column="id" property="id"/>
@@ -200,7 +200,7 @@
         left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id AND ajpn.resource_id = a.id
     </sql>-->
 
-    <sql id="resource_inspect_autoexec_job_node_where">
+    <!--<sql id="resource_inspect_autoexec_job_node_where">
         <if test="searchVo.keyword != null and searchVo.keyword != ''">
             AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
             '%') OR a.`port`
@@ -259,9 +259,9 @@
                 #{tagId}
             </foreach>
         </if>
-    </sql>
+    </sql>-->
 
-    <sql id="resource_inspect_autoexec_job_node_from_join">
+    <!--<sql id="resource_inspect_autoexec_job_node_from_join">
         FROM ${schemaName}.`resource_ipobject_detail` a
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
@@ -269,7 +269,7 @@
         left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
         LEFT JOIN autoexec_job_phase_node ajpn ON ajpn.resource_id = a.id
         LEFT JOIN cmdb_cientity_inspect cci ON cci.ci_entity_id = a.id AND cci.job_id= ajpn.job_id
-    </sql>
+    </sql>-->
 
     <!--<select id="getInspectResourceListByIdList" parameterType="java.lang.Long" resultMap="inspectResourceMap">
         SELECT
@@ -336,16 +336,16 @@
         LIMIT #{startNum}, #{pageSize}
     </select>-->
 
-    <select id="getInspectAutoexecJobNodeResourceCount" resultType="java.lang.Integer">
+    <!--<select id="getInspectAutoexecJobNodeResourceCount" resultType="java.lang.Integer">
         SELECT COUNT(DISTINCT (a.`id`))
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
         and ajpn.job_id = #{jobId}
-    </select>
+    </select>-->
 
-    <select id="getInspectAutoexecJobNodeResourceIdList" resultType="java.lang.Long">
+    <!--<select id="getInspectAutoexecJobNodeResourceIdList" resultType="java.lang.Long">
         SELECT distinct (a.`id`)
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
@@ -353,9 +353,9 @@
         </where>
         and ajpn.job_id = #{jobId}
         LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
-    </select>
+    </select>-->
 
-    <select id="getInspectResourceListByIdListAndJobId" parameterType="java.lang.Long"
+    <!--<select id="getInspectResourceListByIdListAndJobId" parameterType="java.lang.Long"
             resultMap="inspectResourceMap">
         SELECT
         a.ip,
@@ -374,6 +374,7 @@
         a.user_id,
         a.user_uuid,
         a.user_name,
+        a.state_id,
         a.state_name,
         cci.inspect_status,
         cci.inspect_time,
@@ -390,7 +391,7 @@
             #{id}
         </foreach>
         and ajpn.job_id = #{jobId}
-    </select>
+    </select>-->
 
 
     <select id="getResourceScriptListByResourceIdList"
@@ -426,6 +427,21 @@
 
     <select id="getInspectResourceListByIdListNew" parameterType="java.lang.String" resultMap="inspectResourceMap2">
         ${sql}
+    </select>
+
+    <select id="getCiEntityInspectByJobIdAndCiEntityIdList" resultType="codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo">
+        SELECT
+            `id`,
+            `job_id` as jobId,
+            `ci_entity_id` as ciEntityId,
+            `inspect_status` as inspectStatus,
+            `inspect_time` as inspectTime
+        FROM `cmdb_cientity_inspect`
+        WHERE `job_id` = #{jobId}
+          AND `ci_entity_id` IN
+        <foreach collection="ciEntityIdList" item="ciEntityId" open="(" separator="," close=")">
+            #{ciEntityId}
+        </foreach>
     </select>
 
     <insert id="insertResourceScript">

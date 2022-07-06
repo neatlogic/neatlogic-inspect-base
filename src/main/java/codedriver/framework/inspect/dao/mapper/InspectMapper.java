@@ -1,5 +1,6 @@
 package codedriver.framework.inspect.dao.mapper;
 
+import codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo;
 import codedriver.framework.inspect.dto.InspectResourceScriptVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.inspect.dto.InspectCiCombopVo;
@@ -17,7 +18,7 @@ public interface InspectMapper {
 
 //    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+//    List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     List<InspectResourceScriptVo> getResourceScriptListByResourceIdList(@Param("resourceIdList") List<Long> resourceIdList);
 
@@ -27,15 +28,17 @@ public interface InspectMapper {
 
 //    List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
 
-    int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+//    int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
-    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+//    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     int getInspectResourceCountNew(String sql);
 
     List<Long> getInspectResourceIdListNew(String sql);
 
     List<InspectResourceVo> getInspectResourceListByIdListNew(String sql);
+
+    List<CiEntityInspectVo> getCiEntityInspectByJobIdAndCiEntityIdList(@Param("jobId") Long jobId, @Param("ciEntityIdList") List<Long> ciEntityIdList);
 
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
 
