@@ -417,18 +417,6 @@
         WHERE `resource_id` = #{value}
     </select>
 
-    <select id="getInspectResourceCountNew" parameterType="java.lang.String" resultType="int">
-        ${sql}
-    </select>
-
-    <select id="getInspectResourceIdListNew" parameterType="java.lang.String" resultType="java.lang.Long">
-        ${sql}
-    </select>
-
-    <select id="getInspectResourceListByIdListNew" parameterType="java.lang.String" resultMap="inspectResourceMap2">
-        ${sql}
-    </select>
-
     <select id="getCiEntityInspectByJobIdAndCiEntityIdList" resultType="codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo">
         SELECT
             `id`,

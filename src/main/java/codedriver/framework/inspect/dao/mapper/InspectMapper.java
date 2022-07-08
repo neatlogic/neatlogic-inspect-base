@@ -32,12 +32,6 @@ public interface InspectMapper {
 
 //    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
-    int getInspectResourceCountNew(String sql);
-
-    List<Long> getInspectResourceIdListNew(String sql);
-
-    List<InspectResourceVo> getInspectResourceListByIdListNew(String sql);
-
     List<CiEntityInspectVo> getCiEntityInspectByJobIdAndCiEntityIdList(@Param("jobId") Long jobId, @Param("ciEntityIdList") List<Long> ciEntityIdList);
 
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
