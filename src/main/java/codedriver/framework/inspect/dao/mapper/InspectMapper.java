@@ -16,21 +16,21 @@ public interface InspectMapper {
 
     Long getCombopIdByCiId(Long ciId);
 
-//    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+    List<InspectResourceVo> getInspectResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-//    List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+    List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     List<InspectResourceScriptVo> getResourceScriptListByResourceIdList(@Param("resourceIdList") List<Long> resourceIdList);
 
     InspectResourceScriptVo getResourceScriptByResourceId(Long resourceId);
 
-//    int getInspectResourceCount(ResourceSearchVo searchVo);
+    int getInspectResourceCount(ResourceSearchVo searchVo);
 
-//    List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
+    List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
 
-//    int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+    int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
-//    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+    List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     List<CiEntityInspectVo> getCiEntityInspectByJobIdAndCiEntityIdList(@Param("jobId") Long jobId, @Param("ciEntityIdList") List<Long> ciEntityIdList);
 
