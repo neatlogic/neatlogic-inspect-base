@@ -20,6 +20,13 @@ public class InspectResourceVo extends ResourceVo {
     @EntityField(name = "脚本")
     private InspectResourceScriptVo script;
 
+    public InspectResourceVo() {
+    }
+
+    public InspectResourceVo(ResourceVo resourceVo) {
+        super(resourceVo);
+    }
+
     public AutoexecJobPhaseNodeVo getJobPhaseNodeVo() {
         return jobPhaseNodeVo;
     }
