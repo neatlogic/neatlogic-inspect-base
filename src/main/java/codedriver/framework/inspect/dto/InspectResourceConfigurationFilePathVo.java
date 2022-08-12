@@ -5,11 +5,12 @@
 
 package codedriver.framework.inspect.dto;
 
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.util.SnowflakeUtil;
 
 import java.util.Date;
 
-public class InspectResourceConfigurationFilePathVo {
+public class InspectResourceConfigurationFilePathVo extends BasePageVo {
     private Long id;
     private Long resourceId;
     private String path;
@@ -18,6 +19,14 @@ public class InspectResourceConfigurationFilePathVo {
     private Long fileId;
 
     public InspectResourceConfigurationFilePathVo() {}
+
+    public InspectResourceConfigurationFilePathVo(Long id, String md5, Date inspectTime, Long fileId) {
+        this.id = id;
+        this.md5 = md5;
+        this.inspectTime = inspectTime;
+        this.fileId = fileId;
+    }
+
     public InspectResourceConfigurationFilePathVo(Long resourceId, String path) {
         this.resourceId = resourceId;
         this.path = path;
