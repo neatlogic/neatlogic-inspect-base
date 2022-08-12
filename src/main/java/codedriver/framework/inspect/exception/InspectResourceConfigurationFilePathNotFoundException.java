@@ -8,4 +8,10 @@ public class InspectResourceConfigurationFilePathNotFoundException extends ApiRu
     public InspectResourceConfigurationFilePathNotFoundException(Long id) {
         super("巡检资源路径'" + id + "'不存在");
     }
+    public InspectResourceConfigurationFilePathNotFoundException(String resourceName, Long id) {
+        super("巡检资源'" + resourceName + "'路径'" + id + "'不存在");
+    }
+    public InspectResourceConfigurationFilePathNotFoundException(String resourceName, String path) {
+        super("巡检资源'" + resourceName + "'路径'" + path + "'不存在");
+    }
 }

@@ -5,16 +5,33 @@
 
 package codedriver.framework.inspect.dto;
 
+import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.util.SnowflakeUtil;
+
 import java.util.Date;
 
-public class InspectResourceConfigurationFileVersionVo {
+public class InspectResourceConfigurationFileVersionVo extends BasePageVo {
     private Long id;
     private String md5;
     private Date InspectTime;
     private Long fileId;
     private Long recordId;
+    private Long pathId;
+
+    public InspectResourceConfigurationFileVersionVo() {}
+
+    public InspectResourceConfigurationFileVersionVo(String md5, Date inspectTime, Long fileId, Long recordId, Long pathId) {
+        this.md5 = md5;
+        InspectTime = inspectTime;
+        this.fileId = fileId;
+        this.recordId = recordId;
+        this.pathId = pathId;
+    }
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
@@ -52,5 +69,13 @@ public class InspectResourceConfigurationFileVersionVo {
 
     public void setRecordId(Long recordId) {
         this.recordId = recordId;
+    }
+
+    public Long getPathId() {
+        return pathId;
+    }
+
+    public void setPathId(Long pathId) {
+        this.pathId = pathId;
     }
 }
