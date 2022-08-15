@@ -6,9 +6,11 @@
 package codedriver.framework.inspect.dto;
 
 import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.lcs.BaseLineVo;
 import codedriver.framework.util.SnowflakeUtil;
 
 import java.util.Date;
+import java.util.List;
 
 public class InspectResourceConfigurationFileVersionVo extends BasePageVo {
     private Long id;
@@ -17,7 +19,7 @@ public class InspectResourceConfigurationFileVersionVo extends BasePageVo {
     private Long fileId;
     private Long recordId;
     private Long pathId;
-
+    private List<BaseLineVo> lineList;
     public InspectResourceConfigurationFileVersionVo() {}
 
     public InspectResourceConfigurationFileVersionVo(String md5, Date inspectTime, Long fileId, Long recordId, Long pathId) {
@@ -77,5 +79,13 @@ public class InspectResourceConfigurationFileVersionVo extends BasePageVo {
 
     public void setPathId(Long pathId) {
         this.pathId = pathId;
+    }
+
+    public List<BaseLineVo> getLineList() {
+        return lineList;
+    }
+
+    public void setLineList(List<BaseLineVo> lineList) {
+        this.lineList = lineList;
     }
 }
