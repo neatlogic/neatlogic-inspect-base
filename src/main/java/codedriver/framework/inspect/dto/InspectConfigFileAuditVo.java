@@ -10,15 +10,15 @@ import codedriver.framework.util.SnowflakeUtil;
 
 import java.util.Date;
 
-public class InspectResourceConfigurationFileRecordVo extends BasePageVo {
+public class InspectConfigFileAuditVo extends BasePageVo {
     private Long id;
     private Date inspectTime;
     private Long pathId;
     private Long versionId;
 
-    public InspectResourceConfigurationFileRecordVo() {}
+    public InspectConfigFileAuditVo() {}
 
-    public InspectResourceConfigurationFileRecordVo(Date inspectTime, Long pathId) {
+    public InspectConfigFileAuditVo(Date inspectTime, Long pathId) {
         this.inspectTime = inspectTime;
         this.pathId = pathId;
     }
