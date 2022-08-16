@@ -6,30 +6,28 @@
 package codedriver.framework.inspect.dto;
 
 import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.lcs.BaseLineVo;
 import codedriver.framework.util.SnowflakeUtil;
 
 import java.util.Date;
+import java.util.List;
 
-public class InspectResourceConfigurationFilePathVo extends BasePageVo {
+public class InspectConfigFileVersionVo extends BasePageVo {
     private Long id;
-    private Long resourceId;
-    private String path;
     private String md5;
-    private Date inspectTime;
+    private Date InspectTime;
     private Long fileId;
+    private Long recordId;
+    private Long pathId;
+    private List<BaseLineVo> lineList;
+    public InspectConfigFileVersionVo() {}
 
-    public InspectResourceConfigurationFilePathVo() {}
-
-    public InspectResourceConfigurationFilePathVo(Long id, String md5, Date inspectTime, Long fileId) {
-        this.id = id;
+    public InspectConfigFileVersionVo(String md5, Date inspectTime, Long fileId, Long recordId, Long pathId) {
         this.md5 = md5;
-        this.inspectTime = inspectTime;
+        InspectTime = inspectTime;
         this.fileId = fileId;
-    }
-
-    public InspectResourceConfigurationFilePathVo(Long resourceId, String path) {
-        this.resourceId = resourceId;
-        this.path = path;
+        this.recordId = recordId;
+        this.pathId = pathId;
     }
 
     public Long getId() {
@@ -43,22 +41,6 @@ public class InspectResourceConfigurationFilePathVo extends BasePageVo {
         this.id = id;
     }
 
-    public Long getResourceId() {
-        return resourceId;
-    }
-
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public String getMd5() {
         return md5;
     }
@@ -68,11 +50,11 @@ public class InspectResourceConfigurationFilePathVo extends BasePageVo {
     }
 
     public Date getInspectTime() {
-        return inspectTime;
+        return InspectTime;
     }
 
     public void setInspectTime(Date inspectTime) {
-        this.inspectTime = inspectTime;
+        InspectTime = inspectTime;
     }
 
     public Long getFileId() {
@@ -81,5 +63,29 @@ public class InspectResourceConfigurationFilePathVo extends BasePageVo {
 
     public void setFileId(Long fileId) {
         this.fileId = fileId;
+    }
+
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
+
+    public Long getPathId() {
+        return pathId;
+    }
+
+    public void setPathId(Long pathId) {
+        this.pathId = pathId;
+    }
+
+    public List<BaseLineVo> getLineList() {
+        return lineList;
+    }
+
+    public void setLineList(List<BaseLineVo> lineList) {
+        this.lineList = lineList;
     }
 }
