@@ -80,10 +80,6 @@
     </resultMap>
 
     <sql id="resource_inspect_autoexec_job_where">
-        <if test="keyword != null and keyword != ''">
-            AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
-            LIKE CONCAT('%', #{keyword}, '%'))
-        </if>
         AND a.`type_id` IN
         ( SELECT a.`id` FROM `cmdb_ci` a WHERE a.lft &gt;= #{lft} AND a.rht &lt;= #{rht})
         <if test="stateIdList != null and stateIdList.size() > 0">
@@ -149,11 +145,6 @@
     </sql>
 
     <sql id="resource_inspect_autoexec_job_node_where">
-        <if test="searchVo.keyword != null and searchVo.keyword != ''">
-            AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
-            '%') OR a.`port`
-            LIKE CONCAT('%', #{searchVo.keyword}, '%'))
-        </if>
         AND a.`type_id` IN
         ( SELECT a.`id` FROM `cmdb_ci` a WHERE a.lft &gt;= #{searchVo.lft} AND a.rht &lt;= #{searchVo.rht})
         <if test="searchVo.stateIdList != null and searchVo.stateIdList.size() > 0">
@@ -270,6 +261,31 @@
         SELECT COUNT(DISTINCT (a.`id`))
         <include refid="resource_inspect_autoexec_job_from_join"/>
         <where>
+            <if test="keyword != null and keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <include refid="resource_inspect_autoexec_job_where"/>
+        </where>
+    </select>
+
+    <select id="getInspectResourceCountByIpKeyword" resultType="int">
+        SELECT COUNT(DISTINCT (a.`id`))
+        <include refid="resource_inspect_autoexec_job_from_join"/>
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND a.`ip` LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <include refid="resource_inspect_autoexec_job_where"/>
+        </where>
+    </select>
+
+    <select id="getInspectResourceCountByNameKeyword" resultType="int">
+        SELECT COUNT(DISTINCT (a.`id`))
+        <include refid="resource_inspect_autoexec_job_from_join"/>
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND a.`name` LIKE CONCAT('%', #{keyword}, '%')
+            </if>
             <include refid="resource_inspect_autoexec_job_where"/>
         </where>
     </select>
@@ -278,9 +294,22 @@
         SELECT distinct (a.`id`)
         <include refid="resource_inspect_autoexec_job_from_join"/>
         <where>
+            <if test="keyword != null and keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
             <include refid="resource_inspect_autoexec_job_where"/>
         </where>
-        order by a.`id` asc
+        <choose>
+            <when test="isNameFieldSort != null and isNameFieldSort == 1">
+                ORDER BY LENGTH(a.`name`)
+            </when>
+            <when test="isIpFieldSort != null and isIpFieldSort == 1">
+                ORDER BY LENGTH(a.`ip`)
+            </when>
+            <otherwise>
+                ORDER BY a.`id`
+            </otherwise>
+        </choose>
         LIMIT #{startNum}, #{pageSize}
     </select>
 
@@ -288,6 +317,33 @@
         SELECT COUNT(DISTINCT (a.`id`))
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+            </if>
+            <include refid="resource_inspect_autoexec_job_node_where"/>
+        </where>
+        and ajpn.job_id = #{jobId}
+    </select>
+
+    <select id="getInspectAutoexecJobNodeResourceCountByIpKeyword" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT (a.`id`))
+        <include refid="resource_inspect_autoexec_job_node_from_join"/>
+        <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+            </if>
+            <include refid="resource_inspect_autoexec_job_node_where"/>
+        </where>
+        and ajpn.job_id = #{jobId}
+    </select>
+
+    <select id="getInspectAutoexecJobNodeResourceCountByNameKeyword" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT (a.`id`))
+        <include refid="resource_inspect_autoexec_job_node_from_join"/>
+        <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+            </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
         and ajpn.job_id = #{jobId}
@@ -297,9 +353,23 @@
         SELECT distinct (a.`id`)
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+            </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
         and ajpn.job_id = #{jobId}
+        <choose>
+            <when test="searchVo.isNameFieldSort != null and searchVo.isNameFieldSort == 1">
+                ORDER BY LENGTH(a.`name`)
+            </when>
+            <when test="searchVo.isIpFieldSort != null and searchVo.isIpFieldSort == 1">
+                ORDER BY LENGTH(a.`ip`)
+            </when>
+            <otherwise>
+                ORDER BY a.`id`
+            </otherwise>
+        </choose>
         LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
     </select>
 

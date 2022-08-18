@@ -26,9 +26,17 @@ public interface InspectMapper {
 
     int getInspectResourceCount(ResourceSearchVo searchVo);
 
+    int getInspectResourceCountByIpKeyword(ResourceSearchVo searchVo);
+
+    int getInspectResourceCountByNameKeyword(ResourceSearchVo searchVo);
+
     List<Long> getInspectResourceIdList(ResourceSearchVo searchVo);
 
     int getInspectAutoexecJobNodeResourceCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+
+    int getInspectAutoexecJobNodeResourceCountByIpKeyword(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
+
+    int getInspectAutoexecJobNodeResourceCountByNameKeyword(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
     List<Long> getInspectAutoexecJobNodeResourceIdList(@Param("searchVo") ResourceSearchVo searchVo, @Param("jobId") Long jobId, @Param("schemaName") String schemaName);
 
