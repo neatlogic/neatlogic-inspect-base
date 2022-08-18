@@ -11,6 +11,8 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.Date;
+
 public class InspectResourceVo extends ResourceVo {
     private static final long serialVersionUID = -2029368211438672519L;
     @EntityField(name = "作业节点Vo", type = ApiParamType.JSONOBJECT)
@@ -19,6 +21,8 @@ public class InspectResourceVo extends ResourceVo {
     private JSONObject inspectResult;
     @EntityField(name = "脚本")
     private InspectResourceScriptVo script;
+    @EntityField(name = "最近配置文件变更时间")
+    private Date lastChangeTime;
 
     public InspectResourceVo() {
     }
@@ -49,5 +53,13 @@ public class InspectResourceVo extends ResourceVo {
 
     public void setScript(InspectResourceScriptVo script) {
         this.script = script;
+    }
+
+    public Date getLastChangeTime() {
+        return lastChangeTime;
+    }
+
+    public void setLastChangeTime(Date lastChangeTime) {
+        this.lastChangeTime = lastChangeTime;
     }
 }
