@@ -291,7 +291,8 @@
     </select>
 
     <select id="getInspectResourceIdList" resultType="java.lang.Long">
-        SELECT distinct (a.`id`)
+        SELECT m.`id` FROM (
+        SELECT distinct a.`id`, a.`name`, a.`ip`
         <include refid="resource_inspect_autoexec_job_from_join"/>
         <where>
             <if test="keyword != null and keyword != ''">
@@ -311,6 +312,7 @@
             </otherwise>
         </choose>
         LIMIT #{startNum}, #{pageSize}
+        ) m
     </select>
 
     <select id="getInspectAutoexecJobNodeResourceCount" resultType="java.lang.Integer">
@@ -350,7 +352,8 @@
     </select>
 
     <select id="getInspectAutoexecJobNodeResourceIdList" resultType="java.lang.Long">
-        SELECT distinct (a.`id`)
+        SELECT m.`id` FROM (
+        SELECT distinct a.`id`, a.`name`, a.`ip`
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
@@ -371,6 +374,7 @@
             </otherwise>
         </choose>
         LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
+        ) m
     </select>
 
     <select id="getInspectResourceListByIdListAndJobId" parameterType="java.lang.Long"
