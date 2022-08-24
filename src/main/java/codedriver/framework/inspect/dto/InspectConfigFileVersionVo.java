@@ -15,7 +15,7 @@ import java.util.List;
 public class InspectConfigFileVersionVo extends BasePageVo {
     private Long id;
     private String md5;
-    private Date InspectTime;
+    private Date inspectTime;
     private Long fileId;
     private Long auditId;
     private Long pathId;
@@ -24,7 +24,7 @@ public class InspectConfigFileVersionVo extends BasePageVo {
 
     public InspectConfigFileVersionVo(String md5, Date inspectTime, Long fileId, Long auditId, Long pathId) {
         this.md5 = md5;
-        InspectTime = inspectTime;
+        this.inspectTime = inspectTime;
         this.fileId = fileId;
         this.auditId = auditId;
         this.pathId = pathId;
@@ -50,11 +50,11 @@ public class InspectConfigFileVersionVo extends BasePageVo {
     }
 
     public Date getInspectTime() {
-        return InspectTime;
+        return inspectTime;
     }
 
     public void setInspectTime(Date inspectTime) {
-        InspectTime = inspectTime;
+        this.inspectTime = inspectTime;
     }
 
     public Long getFileId() {
