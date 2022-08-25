@@ -15,14 +15,14 @@ public class InspectConfigFilePathSearchVo extends BasePageVo {
     /**
      * 时间范围
      */
-    private List<String> startTimeRange;
+    private List<String> timeRange;
 
-    public List<String> getStartTimeRange() {
-        return startTimeRange;
+    public List<String> getTimeRange() {
+        return timeRange;
     }
 
-    public void setStartTimeRange(List<String> startTimeRange) {
-        this.startTimeRange = startTimeRange;
+    public void setTimeRange(List<String> timeRange) {
+        this.timeRange = timeRange;
     }
 
     public final String getSchemaName() {
