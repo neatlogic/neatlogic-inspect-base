@@ -5,18 +5,52 @@
 
 package codedriver.framework.inspect.dto;
 
-import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.util.SnowflakeUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class InspectConfigFilePathVo extends BasePageVo {
+public class InspectConfigFilePathVo implements Serializable {
+    /**
+     * 唯一标识
+     */
     private Long id;
+    /**
+     * 资产id
+     */
     private Long resourceId;
+    /**
+     * 路径
+     */
     private String path;
+    /**
+     * MD5
+     */
     private String md5;
+    /**
+     * 最后一次修改时间
+     */
     private Date inspectTime;
+    /**
+     * 文件id
+     */
     private Long fileId;
+    /**
+     * 资产名称
+     */
+    private String resourceName;
+    /**
+     * 资产IP
+     */
+    private String resourceIp;
+    /**
+     * 资产端口
+     */
+    private Integer resourcePort;
+    /**
+     * 资产类型
+     */
+    private String resourceTypeLabel;
 
     public InspectConfigFilePathVo() {}
 
@@ -81,5 +115,37 @@ public class InspectConfigFilePathVo extends BasePageVo {
 
     public void setFileId(Long fileId) {
         this.fileId = fileId;
+    }
+
+    public String getResourceName() {
+        return resourceName;
+    }
+
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
+    }
+
+    public String getResourceIp() {
+        return resourceIp;
+    }
+
+    public void setResourceIp(String resourceIp) {
+        this.resourceIp = resourceIp;
+    }
+
+    public Integer getResourcePort() {
+        return resourcePort;
+    }
+
+    public void setResourcePort(Integer resourcePort) {
+        this.resourcePort = resourcePort;
+    }
+
+    public String getResourceTypeLabel() {
+        return resourceTypeLabel;
+    }
+
+    public void setResourceTypeLabel(String resourceTypeLabel) {
+        this.resourceTypeLabel = resourceTypeLabel;
     }
 }
