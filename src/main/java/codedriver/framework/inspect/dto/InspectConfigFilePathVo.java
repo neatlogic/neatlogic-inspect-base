@@ -51,7 +51,10 @@ public class InspectConfigFilePathVo implements Serializable {
      * 资产类型
      */
     private String resourceTypeLabel;
-
+    /**
+     * 版本数量
+     */
+    private int versionCount;
     public InspectConfigFilePathVo() {}
 
     public InspectConfigFilePathVo(Long id, String md5, Date inspectTime, Long fileId) {
@@ -147,5 +150,13 @@ public class InspectConfigFilePathVo implements Serializable {
 
     public void setResourceTypeLabel(String resourceTypeLabel) {
         this.resourceTypeLabel = resourceTypeLabel;
+    }
+
+    public int getVersionCount() {
+        return versionCount;
+    }
+
+    public void setVersionCount(int versionCount) {
+        this.versionCount = versionCount;
     }
 }
