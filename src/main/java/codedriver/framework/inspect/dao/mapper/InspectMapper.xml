@@ -136,7 +136,7 @@
     </sql>
 
     <sql id="resource_inspect_autoexec_job_from_join">
-        FROM ${schemaName}.`scence_ipobject_detail` a
+        FROM @{DATA_SCHEMA}.`scence_ipobject_detail` a
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
@@ -201,7 +201,7 @@
     </sql>
 
     <sql id="resource_inspect_autoexec_job_node_from_join">
-        FROM ${schemaName}.`scence_ipobject_detail` a
+        FROM @{DATA_SCHEMA}.`scence_ipobject_detail` a
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
@@ -252,7 +252,7 @@
         <include refid="resource_inspect_autoexec_job_from_join"/>
         left join cmdb_tag ct on ct.id = crrt.tag_id
         WHERE a.`id` IN
-        <foreach collection="idList" item="id" open="(" separator="," close=")">
+        <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </select>

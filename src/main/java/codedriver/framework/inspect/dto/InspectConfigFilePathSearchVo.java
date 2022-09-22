@@ -5,7 +5,6 @@
 
 package codedriver.framework.inspect.dto;
 
-import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.common.dto.BasePageVo;
 
 import java.util.List;
@@ -23,9 +22,5 @@ public class InspectConfigFilePathSearchVo extends BasePageVo {
 
     public void setTimeRange(List<String> timeRange) {
         this.timeRange = timeRange;
-    }
-
-    public final String getSchemaName() {
-        return TenantContext.get().getDataDbName();
     }
 }
