@@ -22,6 +22,8 @@ public class InspectNewProblemCustomViewVo {
     private String userUuid;
     @EntityField(name = "条件", type = ApiParamType.JSONOBJECT)
     private JSONObject conditionConfig;
+    @EntityField(name = "排序", type = ApiParamType.INTEGER)
+    private Integer sort;
     @JSONField(serialize = false)
     private String conditionConfigStr;
 
@@ -68,6 +70,14 @@ public class InspectNewProblemCustomViewVo {
 
     public void setConditionConfig(JSONObject conditionConfig) {
         this.conditionConfig = conditionConfig;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public String getConditionConfigStr() {
