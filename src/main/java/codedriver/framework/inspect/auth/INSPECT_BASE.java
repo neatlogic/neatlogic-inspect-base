@@ -6,9 +6,10 @@
 package codedriver.framework.inspect.auth;
 
 import codedriver.framework.auth.core.AuthBase;
+import codedriver.framework.autoexec.auth.AUTOEXEC;
 import codedriver.framework.cmdb.auth.label.CMDB;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class INSPECT_BASE extends AuthBase {
@@ -34,6 +35,6 @@ public class INSPECT_BASE extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
-        return Collections.singletonList(CMDB.class);
+        return Arrays.asList(AUTOEXEC.class, CMDB.class);
     }
 }
