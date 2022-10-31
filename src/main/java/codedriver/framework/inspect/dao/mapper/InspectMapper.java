@@ -1,6 +1,7 @@
 package codedriver.framework.inspect.dao.mapper;
 
 import codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo;
+import codedriver.framework.inspect.dto.InspectAlertEverydayVo;
 import codedriver.framework.inspect.dto.InspectResourceScriptVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.inspect.dto.InspectCiCombopVo;
@@ -45,4 +46,6 @@ public interface InspectMapper {
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
 
     int deleteResourceScriptByResourceId(Long resourceId);
+
+    int insertInspectAlertEveryday(InspectAlertEverydayVo inspectAlertEverydayVo);
 }

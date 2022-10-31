@@ -320,7 +320,8 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
+                '%'))
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -332,7 +333,8 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
+                '%'))
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -344,7 +346,8 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
+                '%'))
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -357,7 +360,8 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%'))
+                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
+                '%'))
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -439,16 +443,17 @@
         WHERE `resource_id` = #{value}
     </select>
 
-    <select id="getCiEntityInspectByJobIdAndCiEntityIdList" resultType="codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo">
+    <select id="getCiEntityInspectByJobIdAndCiEntityIdList"
+            resultType="codedriver.framework.cmdb.dto.cientity.CiEntityInspectVo">
         SELECT
-            `id`,
-            `job_id` as jobId,
-            `ci_entity_id` as ciEntityId,
-            `inspect_status` as inspectStatus,
-            `inspect_time` as inspectTime
+        `id`,
+        `job_id` as jobId,
+        `ci_entity_id` as ciEntityId,
+        `inspect_status` as inspectStatus,
+        `inspect_time` as inspectTime
         FROM `cmdb_cientity_inspect`
         WHERE `job_id` = #{jobId}
-          AND `ci_entity_id` IN
+        AND `ci_entity_id` IN
         <foreach collection="ciEntityIdList" item="ciEntityId" open="(" separator="," close=")">
             #{ciEntityId}
         </foreach>
@@ -458,7 +463,17 @@
         insert into `inspect_accessendpoint_script`(`resource_id`, `script_id`, `config`)
         values (#{resourceId}, #{scriptId}, #{config})
     </insert>
-    
+    <insert id="insertInspectAlertEveryday">
+        insert into `inspect_alert_everyday`(`resource_id`, `report_time`, `alert_level`, `alert_object`, `alert_rule`,
+                                             `alert_tips`, `alert_value`)
+        values (#{resourceId}, #{reportTime}, #{alertLevel}, #{alertObject}, #{alertRule}, #{alertTips}, #{alertValue})
+        ON DUPLICATE KEY UPDATE
+        `report_time` = #{reportTime},
+        `alert_rule` = #{alertRule},
+        `alert_value` = #{alertValue},
+        `alert_tips` = #{alertTips};
+    </insert>
+
     <delete id="deleteResourceScriptByResourceId">
         delete
         from `inspect_accessendpoint_script`
