@@ -13,8 +13,6 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
 
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
-//    @EntityField(name = "uuid", type = ApiParamType.STRING)
-//    private String uuid;
     @EntityField(name = "cron", type = ApiParamType.STRING)
     private String cron;
     @EntityField(name = "计划开始时间", type = ApiParamType.LONG)
@@ -34,26 +32,12 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
     private String appSystemAbbrName;
 
     public Long getId() {
-//        if (id == null) {
-//            id = SnowflakeUtil.uniqueLong();
-//        }
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public String getUuid() {
-//        if (StringUtils.isBlank(uuid)) {
-//            uuid = UUID.randomUUID().toString().replace("-", "");
-//        }
-//        return uuid;
-//    }
-//
-//    public void setUuid(String uuid) {
-//        this.uuid = uuid;
-//    }
 
     public String getCron() {
         return cron;
