@@ -1,5 +1,6 @@
 package codedriver.framework.inspect.dao.mapper;
 
+import codedriver.framework.inspect.dto.InspectAppSystemScheduleVo;
 import codedriver.framework.inspect.dto.InspectScheduleVo;
 
 import java.util.List;
@@ -12,11 +13,23 @@ public interface InspectScheduleMapper {
 
     InspectScheduleVo getInspectScheduleByUuid(String uuid);
 
+    InspectAppSystemScheduleVo getInspectAppSystemScheduleById(Long id);
+
+    List<InspectAppSystemScheduleVo> getInspectAppSystemScheduleListByAppSystemIdList(List<Long> appSystemIdList);
+
+    int getInspectAppSystemScheduleCount(InspectAppSystemScheduleVo vo);
+
+    List<InspectAppSystemScheduleVo> getInspectAppSystemScheduleList(InspectAppSystemScheduleVo vo);
+
     int updateInspectSchedule(InspectScheduleVo vo);
 
     int updateInspectScheduleStatus(InspectScheduleVo vo);
 
+    int updateInspectAppSystemSchedule(InspectAppSystemScheduleVo vo);
+
+    int updateInspectAppSystemScheduleStatus(InspectAppSystemScheduleVo vo);
+
     int insertInspectSchedule(InspectScheduleVo vo);
 
-
+    int insertInspectAppSystemSchedule(InspectAppSystemScheduleVo vo);
 }
