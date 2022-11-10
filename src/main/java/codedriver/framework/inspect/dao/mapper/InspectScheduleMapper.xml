@@ -78,6 +78,65 @@
             `uuid` = #{value}
     </select>
 
+    <select id="getInspectAppSystemScheduleById" parameterType="java.lang.Long" resultType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT
+            `id`,
+            `app_system_id` AS appSystemId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `id` = #{value}
+    </select>
+
+    <select id="getInspectAppSystemScheduleListByAppSystemIdList" parameterType="java.lang.Long" resultType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT
+            `id`,
+            `app_system_id` AS appSystemId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `app_system_id` IN
+        <foreach collection="list" item="appSystemId" open="(" separator="," close=")">
+            #{appSystemId}
+        </foreach>
+    </select>
+
+    <select id="getInspectAppSystemScheduleCount" parameterType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo" resultType="int">
+        SELECT
+            COUNT(1)
+        FROM `inspect_appsystem_schedule`
+        WHERE `is_active` = #{isActive}
+    </select>
+
+    <select id="getInspectAppSystemScheduleList" parameterType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo" resultType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT
+            `id`,
+            `app_system_id` AS appSystemId,
+            `cron`,
+            `begin_time` AS beginTime,
+            `end_time` AS endTime,
+            `is_active` AS isActive,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `is_active` = #{isActive}
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
     <update id="updateInspectSchedule" parameterType="codedriver.framework.inspect.dto.InspectScheduleVo">
         UPDATE `inspect_schedule`
         SET `cron` = #{cron},
@@ -91,6 +150,25 @@
 
     <update id="updateInspectScheduleStatus">
         UPDATE `inspect_schedule`
+        SET `is_active` = #{isActive},
+            `lcd` = NOW(3),
+            `lcu` = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <update id="updateInspectAppSystemSchedule" parameterType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        UPDATE `inspect_appsystem_schedule`
+        SET `cron` = #{cron},
+            `begin_time` = #{beginTime},
+            `end_time` = #{endTime},
+            `is_active` = #{isActive},
+            `lcd` = NOW(3),
+            `lcu` = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <update id="updateInspectAppSystemScheduleStatus" parameterType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        UPDATE `inspect_appsystem_schedule`
         SET `is_active` = #{isActive},
             `lcd` = NOW(3),
             `lcu` = #{lcu}
@@ -114,6 +192,32 @@
             #{id},
             #{uuid},
             #{ciId},
+            #{cron},
+            #{beginTime},
+            #{endTime},
+            #{isActive},
+            NOW(3),
+            #{fcu},
+            NOW(3),
+            #{lcu}
+        )
+    </insert>
+
+    <insert id="insertInspectAppSystemSchedule" parameterType="codedriver.framework.inspect.dto.InspectAppSystemScheduleVo">
+        INSERT INTO `inspect_appsystem_schedule` (
+            `id`,
+            `app_system_id`,
+            `cron`,
+            `begin_time`,
+            `end_time`,
+            `is_active`,
+            `fcd`,
+            `fcu`,
+            `lcd`,
+            `lcu`
+        ) VALUES (
+            #{id},
+            #{appSystemId},
             #{cron},
             #{beginTime},
             #{endTime},
