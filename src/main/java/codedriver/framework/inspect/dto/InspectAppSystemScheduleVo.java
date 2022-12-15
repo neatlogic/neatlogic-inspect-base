@@ -3,11 +3,9 @@ package codedriver.framework.inspect.dto;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
-import codedriver.framework.util.SnowflakeUtil;
-import org.apache.commons.lang3.StringUtils;
+import codedriver.framework.scheduler.dto.JobStatusVo;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class InspectAppSystemScheduleVo extends BaseEditorVo {
 
@@ -30,6 +28,8 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
     private String appSystemName;
     @EntityField(name = "应用简称", type = ApiParamType.STRING)
     private String appSystemAbbrName;
+    @EntityField(name = "执行情况", type = ApiParamType.JSONOBJECT)
+    private JobStatusVo jobStatus;
 
     public Long getId() {
         return id;
@@ -101,5 +101,13 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
 
     public void setAppSystemAbbrName(String appSystemAbbrName) {
         this.appSystemAbbrName = appSystemAbbrName;
+    }
+
+    public JobStatusVo getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(JobStatusVo jobStatus) {
+        this.jobStatus = jobStatus;
     }
 }
