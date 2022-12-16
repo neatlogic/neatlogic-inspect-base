@@ -19,15 +19,18 @@ public class InspectConfigFileVersionVo extends BasePageVo {
     private Long fileId;
     private Long auditId;
     private Long pathId;
+
+    private Long jobId;
     private List<BaseLineVo> lineList;
     public InspectConfigFileVersionVo() {}
 
-    public InspectConfigFileVersionVo(String md5, Date inspectTime, Long fileId, Long auditId, Long pathId) {
+    public InspectConfigFileVersionVo(String md5, Date inspectTime, Long fileId, Long auditId, Long pathId, Long jobId) {
         this.md5 = md5;
         this.inspectTime = inspectTime;
         this.fileId = fileId;
         this.auditId = auditId;
         this.pathId = pathId;
+        this.jobId = jobId;
     }
 
     public Long getId() {
@@ -79,6 +82,14 @@ public class InspectConfigFileVersionVo extends BasePageVo {
 
     public void setPathId(Long pathId) {
         this.pathId = pathId;
+    }
+
+    public Long getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
     }
 
     public List<BaseLineVo> getLineList() {

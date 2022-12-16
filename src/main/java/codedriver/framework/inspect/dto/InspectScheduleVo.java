@@ -3,6 +3,7 @@ package codedriver.framework.inspect.dto;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.scheduler.dto.JobStatusVo;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -31,6 +32,8 @@ public class InspectScheduleVo extends BaseEditorVo {
     private String ciName;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private Integer execCount = 0;
+    @EntityField(name = "执行情况", type = ApiParamType.JSONOBJECT)
+    private JobStatusVo jobStatus;
 
     public InspectScheduleVo() {
     }
@@ -122,5 +125,13 @@ public class InspectScheduleVo extends BaseEditorVo {
 
     public void setExecCount(Integer execCount) {
         this.execCount = execCount;
+    }
+
+    public JobStatusVo getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(JobStatusVo jobStatus) {
+        this.jobStatus = jobStatus;
     }
 }
