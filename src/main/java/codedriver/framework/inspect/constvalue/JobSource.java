@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum JobSource implements IAutoexecJobSource {
-    INSPECT("巡检", "inspect"),
-    SCHEDULE_INSPECT("定时巡检", "scheduleinspect");
+    INSPECT("资产巡检", "inspect"),
+    INSPECT_APP("应用巡检", "inspectapp"),
+    SCHEDULE_INSPECT("资产定时巡检", "scheduleinspect"),
+    SCHEDULE_INSPECT_APP("应用定时巡检", "scheduleinspectapp");
     private final String text;
     private final String value;
 
