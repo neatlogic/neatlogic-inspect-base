@@ -55,6 +55,10 @@ public class InspectConfigFilePathVo implements Serializable {
      * 版本数量
      */
     private int versionCount;
+    /**
+     * 版本ID
+     */
+    private Long versionId;
     public InspectConfigFilePathVo() {}
 
     public InspectConfigFilePathVo(Long id, String md5, Date inspectTime, Long fileId) {
@@ -158,5 +162,13 @@ public class InspectConfigFilePathVo implements Serializable {
 
     public void setVersionCount(int versionCount) {
         this.versionCount = versionCount;
+    }
+
+    public Long getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Long versionId) {
+        this.versionId = versionId;
     }
 }
