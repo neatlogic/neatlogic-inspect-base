@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neatlogic.framework.inspect.dao.mapper.InspectScheduleMapper">
+
+    <resultMap id="scheduleVoMap" type="neatlogic.framework.inspect.dto.InspectScheduleVo">
+        <result column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="ciId" property="ciId"/>
+        <result column="cron" property="cron"/>
+        <result column="beginTime" property="beginTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="isActive" property="isActive"/>
+        <result column="fcd" property="fcd"/>
+        <result column="fcu" property="fcu"/>
+        <result column="lcd" property="lcd"/>
+        <result column="lcu" property="lcu"/>
+        <association property="lcuVo" javaType="neatlogic.framework.dto.UserVo">
+            <result property="uuid" column="lcu"/>
+            <result property="userId" column="userId"/>
+            <result property="userName" column="userName"/>
+        </association>
+        <association property="jobStatus" resultMap="jobStatusMap"/>
+    </resultMap>
+
+    <resultMap id="jobStatusMap" type="neatlogic.framework.scheduler.dto.JobStatusVo">
+        <result column="job_name" property="jobName"/>
+        <result column="job_group" property="jobGroup"/>
+        <result column="handler" property="handler"/>
+        <result column="nextFireTime" property="nextFireTime"/>
+        <result column="lastFireTime" property="lastFireTime"/>
+        <result column="lastFinishTime" property="lastFinishTime"/>
+        <result column="execCount" property="execCount"/>
+    </resultMap>
+
+    <select id="getInspectScheduleList" resultMap="scheduleVoMap">
+        SELECT a.`id`,
+               a.`uuid`,
+               a.`ci_id`                                               AS ciId,
+               a.`cron`,
+               a.`begin_time`                                          AS beginTime,
+               a.`end_time`                                            AS endTime,
+               a.`is_active`                                           AS isActive,
+               a.`fcd`,
+               a.`fcu`,
+               a.`lcd`,
+               a.`lcu`,
+               (SELECT `user_id` FROM `user` WHERE `uuid` = a.`lcu`)   AS userId,
+               (SELECT `user_name` FROM `user` WHERE `uuid` = a.`lcu`) AS userName,
+               b.job_name                                              as jobName,
+               b.job_group                                             as jobGroup,
+               b.handler,
+               b.last_finish_time                                      as lastFinishTime,
+               b.last_fire_time                                        as lastFireTime,
+               b.next_fire_time                                        as nextFireTime,
+               b.exec_count                                            as execCount
+        FROM `inspect_schedule` a
+                 LEFT JOIN schedule_job_status b ON a.uuid = b.job_name
+    </select>
+
+    <select id="getInspectScheduleById" parameterType="java.lang.Long"
+            resultType="neatlogic.framework.inspect.dto.InspectScheduleVo">
+        SELECT `id`,
+               `uuid`,
+               `ci_id`      AS ciId,
+               `cron`,
+               `begin_time` AS beginTime,
+               `end_time`   AS endTime,
+               `is_active`  AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_schedule` a
+        WHERE `id` = #{value}
+    </select>
+
+    <select id="getInspectScheduleByUuid" parameterType="java.lang.String"
+            resultType="neatlogic.framework.inspect.dto.InspectScheduleVo">
+        SELECT `id`,
+               `uuid`,
+               `ci_id`      AS ciId,
+               `cron`,
+               `begin_time` AS beginTime,
+               `end_time`   AS endTime,
+               `is_active`  AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_schedule` a
+        WHERE `uuid` = #{value}
+    </select>
+
+    <select id="getInspectAppSystemScheduleById" parameterType="java.lang.Long"
+            resultType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT `id`,
+               `app_system_id` AS appSystemId,
+               `cron`,
+               `begin_time`    AS beginTime,
+               `end_time`      AS endTime,
+               `is_active`     AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `id` = #{value}
+    </select>
+
+    <resultMap id="jobAppSystemDetailMap" type="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        <id column="id" property="id"/>
+        <result column="appSystemId" property="appSystemId"/>
+        <result column="cron" property="cron"/>
+        <result column="beginTime" property="beginTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="isActive" property="isActive"/>
+        <result column="fcd" property="fcd"/>
+        <result column="fcu" property="fcu"/>
+        <result column="lcd" property="lcd"/>
+        <result column="lcu" property="lcu"/>
+        <association property="jobStatus" resultMap="jobStatusMap"/>
+    </resultMap>
+
+    <select id="getInspectAppSystemScheduleListByAppSystemIdList" parameterType="java.lang.Long"
+            resultMap="jobAppSystemDetailMap">
+        SELECT
+        a.`id`,
+        a.`app_system_id` AS appSystemId,
+        a.`cron`,
+        a.`begin_time` AS beginTime,
+        a.`end_time` AS endTime,
+        a.`is_active` AS isActive,
+        a.`fcd`,
+        a.`fcu`,
+        a.`lcd`,
+        a.`lcu`,
+        b.job_name as jobName,
+        b.job_group as jobGroup,
+        b.handler,
+        b.last_finish_time as lastFinishTime,
+        b.last_fire_time as lastFireTime,
+        b.next_fire_time as nextFireTime,
+        b.exec_count as execCount
+        FROM `inspect_appsystem_schedule` a
+        LEFT JOIN schedule_job_status b ON a.id = b.job_name
+        WHERE `app_system_id` IN
+        <foreach collection="list" item="appSystemId" open="(" separator="," close=")">
+            #{appSystemId}
+        </foreach>
+    </select>
+
+    <select id="getInspectAppSystemScheduleCount"
+            parameterType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo" resultType="int">
+        SELECT COUNT(1)
+        FROM `inspect_appsystem_schedule`
+        WHERE `is_active` = #{isActive}
+    </select>
+
+    <select id="getInspectAppSystemScheduleList"
+            parameterType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo"
+            resultType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT `id`,
+               `app_system_id` AS appSystemId,
+               `cron`,
+               `begin_time`    AS beginTime,
+               `end_time`      AS endTime,
+               `is_active`     AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `is_active` = #{isActive}
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <update id="updateInspectSchedule" parameterType="neatlogic.framework.inspect.dto.InspectScheduleVo">
+        UPDATE `inspect_schedule`
+        SET `cron`       = #{cron},
+            `begin_time` = #{beginTime},
+            `end_time`   = #{endTime},
+            `is_active`  = #{isActive},
+            `lcd`        = NOW(3),
+            `lcu`        = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <update id="updateInspectScheduleStatus">
+        UPDATE `inspect_schedule`
+        SET `is_active` = #{isActive},
+            `lcd`       = NOW(3),
+            `lcu`       = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <update id="updateInspectAppSystemSchedule"
+            parameterType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        UPDATE `inspect_appsystem_schedule`
+        SET `cron`       = #{cron},
+            `begin_time` = #{beginTime},
+            `end_time`   = #{endTime},
+            `is_active`  = #{isActive},
+            `lcd`        = NOW(3),
+            `lcu`        = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <update id="updateInspectAppSystemScheduleStatus"
+            parameterType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        UPDATE `inspect_appsystem_schedule`
+        SET `is_active` = #{isActive},
+            `lcd`       = NOW(3),
+            `lcu`       = #{lcu}
+        WHERE `id` = #{id}
+    </update>
+
+    <insert id="insertInspectSchedule">
+        INSERT INTO `inspect_schedule` (`id`,
+                                        `uuid`,
+                                        `ci_id`,
+                                        `cron`,
+                                        `begin_time`,
+                                        `end_time`,
+                                        `is_active`,
+                                        `fcd`,
+                                        `fcu`,
+                                        `lcd`,
+                                        `lcu`)
+        VALUES (#{id},
+                #{uuid},
+                #{ciId},
+                #{cron},
+                #{beginTime},
+                #{endTime},
+                #{isActive},
+                NOW(3),
+                #{fcu},
+                NOW(3),
+                #{lcu})
+    </insert>
+
+    <insert id="insertInspectAppSystemSchedule"
+            parameterType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        INSERT INTO `inspect_appsystem_schedule` (`id`,
+                                                  `app_system_id`,
+                                                  `cron`,
+                                                  `begin_time`,
+                                                  `end_time`,
+                                                  `is_active`,
+                                                  `fcd`,
+                                                  `fcu`,
+                                                  `lcd`,
+                                                  `lcu`)
+        VALUES (#{id},
+                #{appSystemId},
+                #{cron},
+                #{beginTime},
+                #{endTime},
+                #{isActive},
+                NOW(3),
+                #{fcu},
+                NOW(3),
+                #{lcu})
+    </insert>
+</mapper>
+
