@@ -18,15 +18,16 @@ package neatlogic.framework.inspect.constvalue;
 
 import neatlogic.framework.autoexec.dto.AutoexecJobSourceVo;
 import neatlogic.framework.autoexec.source.IAutoexecJobSource;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum JobSource implements IAutoexecJobSource {
-    INSPECT("资产巡检", "inspect"),
-    INSPECT_APP("应用巡检", "inspectapp"),
-    SCHEDULE_INSPECT("资产定时巡检", "scheduleinspect"),
-    SCHEDULE_INSPECT_APP("应用定时巡检", "scheduleinspectapp");
+    INSPECT("enum.inspect.jobsource.inspect", "inspect"),
+    INSPECT_APP("enum.inspect.jobsource.inspect_app", "inspectapp"),
+    SCHEDULE_INSPECT("enum.inspect.jobsource.schedule_inspect", "scheduleinspect"),
+    SCHEDULE_INSPECT_APP("enum.inspect.jobsource.schedule_inspect_app", "scheduleinspectapp");
     private final String text;
     private final String value;
 
@@ -40,7 +41,7 @@ public enum JobSource implements IAutoexecJobSource {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String _status) {

@@ -3,9 +3,10 @@ package neatlogic.framework.inspect.constvalue;
 import neatlogic.framework.autoexec.type.IAutoexecType;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 public enum AutoexecType implements IAutoexecType {
-    INSPECT(1L,"INSPECT", "巡检")
+    INSPECT(1L,"INSPECT", "enum.inspect.autoexectype.inspect")
     ;
 
     private final Long id;
@@ -27,7 +28,7 @@ public enum AutoexecType implements IAutoexecType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     @Override
