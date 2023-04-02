@@ -57,6 +57,26 @@
                  LEFT JOIN schedule_job_status b ON a.uuid = b.job_name
     </select>
 
+    <select id="getInspectScheduleListByIdList" parameterType="java.util.List"
+            resultType="neatlogic.framework.inspect.dto.InspectScheduleVo">
+        SELECT `id`,
+               `uuid`,
+               `ci_id`      AS ciId,
+               `cron`,
+               `begin_time` AS beginTime,
+               `end_time`   AS endTime,
+               `is_active`  AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_schedule` a
+        WHERE `id` IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
     <select id="getInspectScheduleById" parameterType="java.lang.Long"
             resultType="neatlogic.framework.inspect.dto.InspectScheduleVo">
         SELECT `id`,
@@ -105,6 +125,25 @@
                `lcu`
         FROM `inspect_appsystem_schedule`
         WHERE `id` = #{value}
+    </select>
+
+    <select id="getInspectAppSystemScheduleListByIdList" parameterType="java.util.List"
+            resultType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
+        SELECT `id`,
+               `app_system_id` AS appSystemId,
+               `cron`,
+               `begin_time`    AS beginTime,
+               `end_time`      AS endTime,
+               `is_active`     AS isActive,
+               `fcd`,
+               `fcu`,
+               `lcd`,
+               `lcu`
+        FROM `inspect_appsystem_schedule`
+        WHERE `id` IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
     <resultMap id="jobAppSystemDetailMap" type="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
