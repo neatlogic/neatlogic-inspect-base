@@ -16,12 +16,8 @@
 
 package neatlogic.framework.inspect.constvalue;
 
-import neatlogic.framework.autoexec.dto.AutoexecJobSourceVo;
 import neatlogic.framework.autoexec.source.IAutoexecJobSource;
 import neatlogic.framework.util.I18nUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public enum JobSource implements IAutoexecJobSource {
     INSPECT("enum.inspect.jobsource.inspect", "inspect"),
@@ -51,22 +47,6 @@ public enum JobSource implements IAutoexecJobSource {
             }
         }
         return "";
-    }
-
-    /**
-     * @return 返回对应的来源
-     */
-    @Override
-    public List<AutoexecJobSourceVo> getSource() {
-        List<AutoexecJobSourceVo> list = new ArrayList<>();
-        for (JobSource s : JobSource.values()) {
-            AutoexecJobSourceVo source = new AutoexecJobSourceVo();
-            source.setSource(s.value);
-            source.setSourceName(s.getText());
-            source.setType(s.getType());
-            list.add(source);
-        }
-        return list;
     }
 
 }

@@ -9,11 +9,14 @@ public interface InspectScheduleMapper {
 
     List<InspectScheduleVo> getInspectScheduleList();
 
+    List<InspectScheduleVo> getInspectScheduleListByIdList(List<Long> idList);
     InspectScheduleVo getInspectScheduleById(Long id);
 
     InspectScheduleVo getInspectScheduleByUuid(String uuid);
 
     InspectAppSystemScheduleVo getInspectAppSystemScheduleById(Long id);
+
+    List<InspectAppSystemScheduleVo> getInspectAppSystemScheduleListByIdList(List<Long> idList);
 
     List<InspectAppSystemScheduleVo> getInspectAppSystemScheduleListByAppSystemIdList(List<Long> appSystemIdList);
 
