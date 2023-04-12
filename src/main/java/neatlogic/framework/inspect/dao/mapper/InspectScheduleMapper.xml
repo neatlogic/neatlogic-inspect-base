@@ -127,20 +127,29 @@
         WHERE `id` = #{value}
     </select>
 
-    <select id="getInspectAppSystemScheduleListByIdList" parameterType="java.util.List"
-            resultType="neatlogic.framework.inspect.dto.InspectAppSystemScheduleVo">
-        SELECT `id`,
-               `app_system_id` AS appSystemId,
-               `cron`,
-               `begin_time`    AS beginTime,
-               `end_time`      AS endTime,
-               `is_active`     AS isActive,
-               `fcd`,
-               `fcu`,
-               `lcd`,
-               `lcu`
-        FROM `inspect_appsystem_schedule`
-        WHERE `id` IN
+    <select id="getInspectAppSystemScheduleListByIdList" parameterType="java.lang.Long"
+            resultMap="jobAppSystemDetailMap">
+        SELECT
+        a.`id`,
+        a.`app_system_id` AS appSystemId,
+        a.`cron`,
+        a.`begin_time` AS beginTime,
+        a.`end_time` AS endTime,
+        a.`is_active` AS isActive,
+        a.`fcd`,
+        a.`fcu`,
+        a.`lcd`,
+        a.`lcu`,
+        b.job_name as jobName,
+        b.job_group as jobGroup,
+        b.handler,
+        b.last_finish_time as lastFinishTime,
+        b.last_fire_time as lastFireTime,
+        b.next_fire_time as nextFireTime,
+        b.exec_count as execCount
+        FROM `inspect_appsystem_schedule` a
+        LEFT JOIN schedule_job_status b ON a.id = b.job_name
+        WHERE a.`id` IN
         <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
