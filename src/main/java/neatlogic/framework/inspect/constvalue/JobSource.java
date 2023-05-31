@@ -20,9 +20,9 @@ import neatlogic.framework.autoexec.source.IAutoexecJobSource;
 import neatlogic.framework.util.I18nUtils;
 
 public enum JobSource implements IAutoexecJobSource {
-    INSPECT("enum.inspect.jobsource.inspect", "inspect"),
+    INSPECT("enum.inspect.jobsource.inspect.a", "inspect"),
     INSPECT_APP("enum.inspect.jobsource.inspect_app", "inspectapp"),
-    SCHEDULE_INSPECT("enum.inspect.jobsource.schedule_inspect", "scheduleinspect"),
+    SCHEDULE_INSPECT("enum.inspect.jobsource.schedule_inspect.a", "scheduleinspect"),
     SCHEDULE_INSPECT_APP("enum.inspect.jobsource.schedule_inspect_app", "scheduleinspectapp");
     private final String text;
     private final String value;
