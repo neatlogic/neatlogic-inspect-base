@@ -26,12 +26,12 @@ import java.util.List;
 public class INSPECT_BASE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "auth.inspect.inspectbase.name";
+        return "巡检基础权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.inspect.inspectbase.introduction";
+        return "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告";
     }
 
     @Override

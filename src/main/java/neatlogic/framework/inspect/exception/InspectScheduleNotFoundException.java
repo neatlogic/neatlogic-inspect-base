@@ -6,6 +6,6 @@ public class InspectScheduleNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 279377939364652096L;
 
     public InspectScheduleNotFoundException(Long id) {
-        super("exception.inspect.inspectschedulenotfoundexception", id);
+        super("巡检定时任务“{0}”不存在", id);
     }
 }

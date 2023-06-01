@@ -7,6 +7,6 @@ public class InspectNewProblemCustomViewNotFoundException extends ApiRuntimeExce
     private static final long serialVersionUID = -2773976730974727264L;
 
     public InspectNewProblemCustomViewNotFoundException(Long id) {
-        super("exception.inspect.inspectnewproblemcustomviewnotfoundexception", id);
+        super("巡检最新问题个人视图分类“{0}”不存在", id);
     }
 }

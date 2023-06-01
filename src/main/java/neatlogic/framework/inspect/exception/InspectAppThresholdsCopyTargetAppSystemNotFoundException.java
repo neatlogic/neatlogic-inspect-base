@@ -22,6 +22,6 @@ package neatlogic.framework.inspect.exception;
 
 public class InspectAppThresholdsCopyTargetAppSystemNotFoundException extends RuntimeException {
     public InspectAppThresholdsCopyTargetAppSystemNotFoundException() {
-        super("exception.inspect.inspectappthresholdscopytargetappsystemnotfoundexception");
+        super("所选目标应用已不存在，复制应用个性化阈值失败");
     }
 }

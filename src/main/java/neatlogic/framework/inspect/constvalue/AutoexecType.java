@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.util.I18nUtils;
 
 public enum AutoexecType implements IAutoexecType {
-    INSPECT(1L,"INSPECT", "common.inspection")
+    INSPECT(1L,"INSPECT", "巡检")
     ;
 
     private final Long id;

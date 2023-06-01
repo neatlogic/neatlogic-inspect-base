@@ -29,12 +29,12 @@ public class INSPECT_CONFIG_FILE_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.inspect.inspectconfigfilemodify.name";
+        return "配置文件管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.inspect.inspectconfigfilemodify.introduction";
+        return "用于添加、删除文件路径及清理文件";
     }
 
     @Override

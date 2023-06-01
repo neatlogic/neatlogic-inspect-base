@@ -10,10 +10,10 @@ public class InspectConfigFilePathNotFoundException extends ApiRuntimeException 
     }
 
     public InspectConfigFilePathNotFoundException(String resourceName, Long id) {
-        super("exception.inspect.inspectconfigfilepathnotfoundexception", resourceName, id);
+        super("巡检资源“{1}”路径“{0}”不存在", resourceName, id);
     }
 
     public InspectConfigFilePathNotFoundException(String resourceName, String path) {
-        super("exception.inspect.inspectconfigfilepathnotfoundexception", resourceName, path);
+        super("巡检资源“{1}”路径“{0}”不存在", resourceName, path);
     }
 }

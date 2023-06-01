@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InspectUrlConfigIllegalException extends ApiRuntimeException {
     public InspectUrlConfigIllegalException() {
-        super("exception.inspect.inspecturlconfigillegalexception");
+        super("配置URL拨测的拓展配置格式不对，请参考配置例子");
     }
 }

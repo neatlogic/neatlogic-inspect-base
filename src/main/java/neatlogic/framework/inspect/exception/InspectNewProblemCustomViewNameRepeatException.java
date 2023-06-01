@@ -6,6 +6,6 @@ public class InspectNewProblemCustomViewNameRepeatException extends ApiRuntimeEx
     private static final long serialVersionUID = 6573116997440656559L;
 
     public InspectNewProblemCustomViewNameRepeatException(String name) {
-        super("exception.inspect.inspectnewproblemcustomviewnamerepeatexception", name);
+        super("巡检最新问题个人视图分类“{0}”已存在", name);
     }
 }

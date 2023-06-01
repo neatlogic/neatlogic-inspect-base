@@ -24,12 +24,12 @@ import java.util.List;
 public class INSPECT_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "auth.inspect.inspectexecute.name";
+        return "巡检单个执行或批量执行权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.inspect.inspectexecute.introduction";
+        return "发起批量巡检作业、单个巡检作业";
     }
 
     @Override

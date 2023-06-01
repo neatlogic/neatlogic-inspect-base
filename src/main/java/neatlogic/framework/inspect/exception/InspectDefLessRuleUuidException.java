@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InspectDefLessRuleUuidException extends ApiRuntimeException {
     public InspectDefLessRuleUuidException(int i) {
-        super("exception.inspect.inspectdeflessruleuuidexception", (i + 1));
+        super("第{0}条规则缺少规则uuid(ruleUuid)参数", (i + 1));
     }
 }

@@ -24,12 +24,12 @@ import java.util.List;
 public class INSPECT_SCHEDULE_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "auth.inspect.inspectscheduleexecute.name";
+        return "巡检定时执行权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.inspect.inspectscheduleexecute.introduction";
+        return "发起定时巡检作业";
     }
 
     @Override

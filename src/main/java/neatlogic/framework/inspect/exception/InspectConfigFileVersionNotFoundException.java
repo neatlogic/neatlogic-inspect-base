@@ -6,7 +6,7 @@ public class InspectConfigFileVersionNotFoundException extends ApiRuntimeExcepti
     private static final long serialVersionUID = 279377939364652098L;
 
     public InspectConfigFileVersionNotFoundException(Long id) {
-        super("exception.inspect.inspectconfigfileversionnotfoundexception", id);
+        super("巡检资源配置文件版本“{0}”不存在", id);
     }
 
 }

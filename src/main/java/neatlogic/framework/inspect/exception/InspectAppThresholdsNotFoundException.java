@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InspectAppThresholdsNotFoundException extends ApiRuntimeException {
     public InspectAppThresholdsNotFoundException(Long appSystemId, String name) {
-        super("exception.inspect.inspectappthresholdsnotfoundexception", appSystemId, name);
+        super("应用id为：{0}的应用的{1}的阈值规则为空", appSystemId, name);
     }
 }

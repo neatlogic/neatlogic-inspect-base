@@ -4,6 +4,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InspectDefLessNameException extends ApiRuntimeException {
     public InspectDefLessNameException(int i) {
-        super("exception.inspect.inspectdeflessnameexception", (i + 1));
+        super("第{0}条规则缺少名称参数", (i + 1));
     }
 }

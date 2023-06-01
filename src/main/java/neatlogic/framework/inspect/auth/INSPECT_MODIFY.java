@@ -24,12 +24,12 @@ import java.util.List;
 public class INSPECT_MODIFY extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "auth.inspect.inspectmodify.name";
+        return "巡检管理员权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.inspect.inspectmodify.introduction";
+        return "设置阈值规则，预定义模型对应的巡检工具";
     }
 
     @Override
