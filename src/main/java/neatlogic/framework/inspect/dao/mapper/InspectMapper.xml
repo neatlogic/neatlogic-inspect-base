@@ -10,6 +10,17 @@
         from inspect_ci_combop icc
                  join autoexec_combop ac on icc.combop_id = ac.id
     </select>
+
+    <select id="searchInspectCiCombopListByCiIdList" parameterType="java.util.List" resultType="neatlogic.framework.inspect.dto.InspectCiCombopVo">
+        SELECT
+            `ci_id`    AS id,
+            `combop_id` AS combopId
+        FROM `inspect_ci_combop`
+        WHERE `ci_id` IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
     <select id="getCombopIdByCiId" resultType="java.lang.Long">
         select combop_id
         from inspect_ci_combop
