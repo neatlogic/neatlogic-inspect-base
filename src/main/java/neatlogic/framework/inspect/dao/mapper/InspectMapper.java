@@ -13,6 +13,8 @@ import java.util.List;
 public interface InspectMapper {
     List<InspectCiCombopVo> searchInspectCiCombopList();
 
+    List<InspectCiCombopVo> searchInspectCiCombopListByCiIdList(List<Long> ciIdList);
+
     void replaceInspectCiCombopList(@Param("ciVoList") List<InspectCiCombopVo> ciVoList);
 
     Long getCombopIdByCiId(Long ciId);
