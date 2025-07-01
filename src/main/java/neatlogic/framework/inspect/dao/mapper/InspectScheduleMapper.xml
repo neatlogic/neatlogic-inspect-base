@@ -23,8 +23,8 @@
     </resultMap>
 
     <resultMap id="jobStatusMap" type="neatlogic.framework.scheduler.dto.JobStatusVo">
-        <result column="job_name" property="jobName"/>
-        <result column="job_group" property="jobGroup"/>
+        <result column="jobName" property="jobName"/>
+        <result column="jobGroup" property="jobGroup"/>
         <result column="handler" property="handler"/>
         <result column="nextFireTime" property="nextFireTime"/>
         <result column="lastFireTime" property="lastFireTime"/>
