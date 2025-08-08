@@ -371,6 +371,10 @@
         </foreach>
     </select>
 
+    <select id="getInspectResourceListByIdListSql" parameterType="java.lang.Long" resultMap="inspectResourceMap">
+        ${sql}
+    </select>
+
     <select id="getInspectResourceCount" resultType="int">
         SELECT COUNT(DISTINCT (a.`id`))
         <include refid="resource_inspect_autoexec_job_from_join_with_auth"/>

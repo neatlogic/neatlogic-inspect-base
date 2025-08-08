@@ -1,10 +1,10 @@
 package neatlogic.framework.inspect.dao.mapper;
 
 import neatlogic.framework.cmdb.dto.cientity.CiEntityInspectVo;
-import neatlogic.framework.inspect.dto.InspectAlertEverydayVo;
-import neatlogic.framework.inspect.dto.InspectResourceScriptVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
+import neatlogic.framework.inspect.dto.InspectAlertEverydayVo;
 import neatlogic.framework.inspect.dto.InspectCiCombopVo;
+import neatlogic.framework.inspect.dto.InspectResourceScriptVo;
 import neatlogic.framework.inspect.dto.InspectResourceVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,6 +20,8 @@ public interface InspectMapper {
     Long getCombopIdByCiId(Long ciId);
 
     List<InspectResourceVo> getInspectResourceListByIdList(List<Long> idList);
+
+    List<InspectResourceVo> getInspectResourceListByIdListSql(String newSql);
 
     List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId);
 
