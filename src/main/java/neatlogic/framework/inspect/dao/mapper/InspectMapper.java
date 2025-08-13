@@ -11,6 +11,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface InspectMapper {
+
+    List<InspectResourceVo> getInspectResourceListByIdListSql(String sql);
+
     List<InspectCiCombopVo> searchInspectCiCombopList();
 
     List<InspectCiCombopVo> searchInspectCiCombopListByCiIdList(List<Long> ciIdList);
@@ -20,8 +23,6 @@ public interface InspectMapper {
     Long getCombopIdByCiId(Long ciId);
 
     List<InspectResourceVo> getInspectResourceListByIdList(List<Long> idList);
-
-    List<InspectResourceVo> getInspectResourceListByIdListSql(String newSql);
 
     List<InspectResourceVo> getInspectResourceListByIdListAndJobId(@Param("idList") List<Long> idList, @Param("jobId") Long jobId);
 

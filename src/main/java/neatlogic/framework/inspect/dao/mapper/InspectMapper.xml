@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neatlogic.framework.inspect.dao.mapper.InspectMapper">
 
+    <select id="getInspectResourceListByIdListSql" parameterType="java.lang.Long" resultMap="inspectResourceMap">
+        ${sql}
+    </select>
 
     <select id="searchInspectCiCombopList" resultType="neatlogic.framework.inspect.dto.InspectCiCombopVo">
         select icc.ci_id     as id,
@@ -369,10 +372,6 @@
         <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>
-
-    <select id="getInspectResourceListByIdListSql" parameterType="java.lang.Long" resultMap="inspectResourceMap">
-        ${sql}
     </select>
 
     <select id="getInspectResourceCount" resultType="int">
