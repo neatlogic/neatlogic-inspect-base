@@ -1,16 +1,19 @@
 package neatlogic.framework.inspect.dao.mapper;
 
 import neatlogic.framework.cmdb.dto.cientity.CiEntityInspectVo;
-import neatlogic.framework.inspect.dto.InspectAlertEverydayVo;
-import neatlogic.framework.inspect.dto.InspectResourceScriptVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
+import neatlogic.framework.inspect.dto.InspectAlertEverydayVo;
 import neatlogic.framework.inspect.dto.InspectCiCombopVo;
+import neatlogic.framework.inspect.dto.InspectResourceScriptVo;
 import neatlogic.framework.inspect.dto.InspectResourceVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface InspectMapper {
+
+    List<InspectResourceVo> getInspectResourceListByIdListSql(String sql);
+
     List<InspectCiCombopVo> searchInspectCiCombopList();
 
     List<InspectCiCombopVo> searchInspectCiCombopListByCiIdList(List<Long> ciIdList);

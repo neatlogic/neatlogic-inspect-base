@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neatlogic.framework.inspect.dao.mapper.InspectMapper">
 
+    <select id="getInspectResourceListByIdListSql" parameterType="java.lang.Long" resultMap="inspectResourceMap">
+        ${sql}
+    </select>
 
     <select id="searchInspectCiCombopList" resultType="neatlogic.framework.inspect.dto.InspectCiCombopVo">
         select icc.ci_id     as id,
@@ -406,7 +409,13 @@
 
     <select id="getInspectResourceIdList" resultType="java.lang.Long">
         SELECT m.`id` FROM (
-        SELECT distinct a.`id`, a.`name`, a.`ip`
+        SELECT distinct a.`id`
+        <if test="isNameFieldSort != null and isNameFieldSort == 1">
+            ,a.`name`
+        </if>
+        <if test="isIpFieldSort != null and isIpFieldSort == 1">
+            ,a.`ip`
+        </if>
         <include refid="resource_inspect_autoexec_job_from_join_with_auth"/>
         <where>
             <if test="keyword != null and keyword != ''">
@@ -416,10 +425,10 @@
         </where>
         <choose>
             <when test="isNameFieldSort != null and isNameFieldSort == 1">
-                ORDER BY LENGTH(a.`name`)
+                ORDER BY LENGTH(a.`name`), a.`id`
             </when>
             <when test="isIpFieldSort != null and isIpFieldSort == 1">
-                ORDER BY LENGTH(a.`ip`)
+                ORDER BY LENGTH(a.`ip`), a.`id`
             </when>
             <otherwise>
                 ORDER BY a.`id`
@@ -447,8 +456,7 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
-                '%'))
+                AND a.`ip` LIKE CONCAT('%', #{searchVo.keyword}, '%')
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -460,8 +468,7 @@
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{searchVo.keyword},
-                '%'))
+                AND a.`name` LIKE CONCAT('%', #{searchVo.keyword}, '%')
             </if>
             <include refid="resource_inspect_autoexec_job_node_where"/>
         </where>
@@ -470,7 +477,13 @@
 
     <select id="getInspectAutoexecJobNodeResourceIdList" resultType="java.lang.Long">
         SELECT m.`id` FROM (
-        SELECT distinct a.`id`, a.`name`, a.`ip`
+        SELECT distinct a.`id`
+        <if test="searchVo.isNameFieldSort != null and searchVo.isNameFieldSort == 1">
+            , a.`name`
+        </if>
+        <if test="searchVo.isIpFieldSort != null and searchVo.isIpFieldSort == 1">
+            , a.`ip`
+        </if>
         <include refid="resource_inspect_autoexec_job_node_from_join"/>
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
