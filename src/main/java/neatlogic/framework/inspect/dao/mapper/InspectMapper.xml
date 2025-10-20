@@ -588,12 +588,12 @@
 
     <insert id="insertResourceScript">
         insert into `inspect_accessendpoint_script`(`resource_id`, `script_id`, `config`)
-        values (#{resourceId}, #{scriptId}, #{config})
+        values (#{resourceId}, #{scriptId}, #{config, typeHandler=CompressHandler})
     </insert>
     <insert id="insertInspectAlertEveryday">
         insert into `inspect_alert_everyday`(`resource_id`, `report_time`, `alert_level`, `alert_object`, `alert_rule`,
                                              `alert_tips`, `alert_value`)
-        values (#{resourceId}, #{reportTime}, #{alertLevel}, #{alertObject}, #{alertRule}, #{alertTips}, #{alertValue})
+        values (#{resourceId}, #{reportTime}, #{alertLevel}, #{alertObject, typeHandler=CompressHandler}, #{alertRule}, #{alertTips}, #{alertValue})
         ON DUPLICATE KEY UPDATE
         `report_time` = #{reportTime},
         `alert_rule` = #{alertRule},
