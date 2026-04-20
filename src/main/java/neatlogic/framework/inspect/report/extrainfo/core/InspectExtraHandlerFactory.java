@@ -26,16 +26,16 @@ import java.util.List;
 import java.util.Map;
 
 @RootComponent
-public class InspectReportExtraInfoHandlerFactory extends ModuleInitializedListenerBase {
-    private static final List<IInspectReportExtraInfoHandler> HANDLER_LIST = new ArrayList<>();
+public class InspectExtraHandlerFactory extends ModuleInitializedListenerBase {
+    private static final List<IInspectExtraHandler> HANDLER_LIST = new ArrayList<>();
 
-    public static List<IInspectReportExtraInfoHandler> getHandlerList() {
+    public static List<IInspectExtraHandler> getHandlerList() {
         return HANDLER_LIST;
     }
 
     @Override
     protected void onInitialized(NeatLogicWebApplicationContext context) {
-        Map<String, IInspectReportExtraInfoHandler> handlerMap = context.getBeansOfType(IInspectReportExtraInfoHandler.class);
+        Map<String, IInspectExtraHandler> handlerMap = context.getBeansOfType(IInspectExtraHandler.class);
         HANDLER_LIST.addAll(handlerMap.values());
     }
 

@@ -21,8 +21,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.bson.Document;
 
-public interface IInspectReportExtraInfoHandler {
+public interface IInspectExtraHandler {
     void getInspectReport(Long resourceId, String id, Long jobId, Document reportDoc, JSONObject reportJson, JSONObject inspectResult);
 
     void getInspectReportDetail(JSONObject reportJson, JSONArray resourceAlertArray);
+
+    default void afterInspectAppJobCreated(JSONObject jobContext) {
+
+    }
 }
