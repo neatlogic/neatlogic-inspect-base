@@ -26,7 +26,4 @@ public interface IInspectExtraHandler {
 
     void getInspectReportDetail(JSONObject reportJson, JSONArray resourceAlertArray);
 
-    default void afterInspectAppJobCreated(JSONObject jobContext) {
-
-    }
 }
