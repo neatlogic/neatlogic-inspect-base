@@ -40,6 +40,6 @@ public class INSPECT_MODIFY extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
-        return Arrays.asList(INSPECT_SCHEDULE_EXECUTE.class, INSPECT_EXECUTE.class, INSPECT_CONFIG_FILE_MODIFY.class);
+        return Arrays.asList(INSPECT_SCHEDULE_EXECUTE.class, INSPECT_EXECUTE.class, INSPECT_CONFIG_FILE_MODIFY.class, INSPECT_BASELINE_MODIFY.class);
     }
 }
