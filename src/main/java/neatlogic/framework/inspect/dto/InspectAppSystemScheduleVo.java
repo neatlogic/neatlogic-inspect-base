@@ -31,6 +31,10 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
     @EntityField(name = "执行情况", type = ApiParamType.JSONOBJECT)
     private JobStatusVo jobStatus;
 
+    // 记录定时作业配置最初由哪个应用服务器创建，用于按应用服务分组过滤管理页数据。
+    private Integer sourceServerId;
+    private String sourceServerGroup;
+
     public Long getId() {
         return id;
     }
@@ -109,5 +113,21 @@ public class InspectAppSystemScheduleVo extends BaseEditorVo {
 
     public void setJobStatus(JobStatusVo jobStatus) {
         this.jobStatus = jobStatus;
+    }
+
+    public Integer getSourceServerId() {
+        return sourceServerId;
+    }
+
+    public void setSourceServerId(Integer sourceServerId) {
+        this.sourceServerId = sourceServerId;
+    }
+
+    public String getSourceServerGroup() {
+        return sourceServerGroup;
+    }
+
+    public void setSourceServerGroup(String sourceServerGroup) {
+        this.sourceServerGroup = sourceServerGroup;
     }
 }
