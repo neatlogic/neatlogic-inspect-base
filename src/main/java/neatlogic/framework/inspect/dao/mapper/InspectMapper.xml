@@ -230,7 +230,7 @@
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
-        left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
+        left join cmdb_cientity_tag crrt on crrt.cientity_id = a.id
         left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id AND ajpn.resource_id = a.id
     </sql>
 
@@ -239,7 +239,7 @@
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
-        left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
+        left join cmdb_cientity_tag crrt on crrt.cientity_id = a.id
         left join autoexec_job_phase_node ajpn on ajpn.job_phase_id =ajri.phase_id AND ajpn.resource_id = a.id
         <if test="isHasAuth == false">
             LEFT JOIN cmdb_cientity_group ccg ON ccg.cientity_id = a.id
@@ -322,7 +322,7 @@
         left join autoexec_job_resource_inspect ajri on ajri.resource_id=a.id
         left join cmdb_resourcecenter_resource_account crra on crra.resource_id=a.id
         left join cmdb_resourcecenter_account cra on cra.id=crra.account_id
-        left join cmdb_resourcecenter_resource_tag crrt on crrt.resource_id = a.id
+        left join cmdb_cientity_tag crrt on crrt.cientity_id = a.id
         LEFT JOIN autoexec_job_phase_node ajpn ON ajpn.resource_id = a.id
         LEFT JOIN cmdb_cientity_inspect cci ON cci.ci_entity_id = a.id AND cci.job_id= ajpn.job_id
     </sql>
