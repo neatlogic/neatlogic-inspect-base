@@ -22,16 +22,17 @@ import neatlogic.framework.auth.core.AuthBase;
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class INSPECT_BASELINE_TEMPLATE_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "基线巡检模板权限";
+        return "auth.inspect_baseline_template_modify.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "用于维护基线模板层级、描述和编辑授权";
+        return "nfia.inspect_baseline_template_modify.getauthintroduction";
     }
 
     @Override

@@ -20,15 +20,16 @@ import neatlogic.framework.auth.core.AuthBase;
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class INSPECT_SCHEDULE_EXECUTE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检定时执行权限";
+        return "auth.inspect_schedule_execute.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "发起定时巡检作业";
+        return "auth.inspect_schedule_execute.description";
     }
 
     @Override

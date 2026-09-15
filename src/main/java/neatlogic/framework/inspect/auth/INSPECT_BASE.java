@@ -19,15 +19,16 @@ import neatlogic.framework.cmdb.auth.label.CMDB;
 import java.util.Arrays;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class INSPECT_BASE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "巡检基础权限";
+        return "auth.inspect_base.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告";
+        return "auth.inspect_base.description";
     }
 
     @Override

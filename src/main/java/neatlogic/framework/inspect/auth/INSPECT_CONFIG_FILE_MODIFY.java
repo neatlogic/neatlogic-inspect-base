@@ -21,16 +21,17 @@ import java.util.List;
  * @date 2022/10/18 16:06
  */
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class INSPECT_CONFIG_FILE_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "配置文件管理权限";
+        return "auth.inspect_config_file_modify.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "用于添加、删除文件路径及清理文件";
+        return "auth.inspect_config_file_modify.description";
     }
 
     @Override
