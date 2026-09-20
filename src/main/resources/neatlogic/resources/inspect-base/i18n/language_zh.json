@@ -1,0 +1,70 @@
+{
+  "auth": {
+    "inspect_base": {
+      "description": "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告",
+      "name": "巡检基础权限"
+    },
+    "inspect_baseline_modify": {
+      "description": "用于维护基线模板层级、描述和编辑授权",
+      "name": "基线巡检管理权限"
+    },
+    "inspect_baseline_template_modify": {
+      "name": "基线巡检模板权限"
+    },
+    "inspect_baseline_view": {
+      "description": "基线巡检查看、创建巡检作业、生成基线草稿权限",
+      "name": "基线巡检查看权限"
+    },
+    "inspect_config_file_modify": {
+      "description": "用于添加、删除文件路径及清理文件",
+      "name": "配置文件管理权限"
+    },
+    "inspect_execute": {
+      "description": "发起批量巡检作业、单个巡检作业",
+      "name": "巡检单个执行或批量执行权限"
+    },
+    "inspect_modify": {
+      "description": "设置阈值规则，预定义模型对应的巡检工具",
+      "name": "巡检管理员权限"
+    },
+    "inspect_resourcecenter_account_modify": {
+      "description": "管理巡检模块资源中心的账号、账号协议和账号标签。",
+      "name": "巡检资源中心-账号管理权限"
+    },
+    "inspect_resourcecenter_resource_view": {
+      "description": "查看巡检模块资源中心的资产清单。",
+      "name": "巡检资源中心-资产清单查看权限"
+    },
+    "inspect_resourcecenter_tag_modify": {
+      "description": "对巡检模块资源中心的标签进行新增、修改和删除。",
+      "name": "巡检资源中心-标签管理权限"
+    },
+    "inspect_resourcecenter_view_modify": {
+      "description": "对巡检模块资源中心的视图进行新增、修改、复制和删除，并查看视图数据。",
+      "name": "巡检资源中心-视图设置权限"
+    },
+    "inspect_schedule_execute": {
+      "description": "发起定时巡检作业",
+      "name": "巡检定时执行权限"
+    }
+  },
+  "nfia": {
+    "inspect_baseline_template_modify": {
+      "getauthdisplayname": "基线管理权限",
+      "getauthintroduction": "用于维护基线模板层级、描述和编辑授权"
+    }
+  },
+  "nfie": {
+    "inspectdefinitionnotfoundedittargetexception": {
+      "inspectdefinitionnotfoundedittargetexception": "巡检定义：{0}不存在"
+    },
+    "inspectnewproblemcustomviewnotfoundedittargetexception": {
+      "inspectnewproblemcustomviewnotfoundedittargetexception": "巡检最新问题个人视图分类{0}不存在"
+    }
+  },
+  "term": {
+    "inspect": {
+      "inspectstatuslist": "巡检状态列表"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "auth": {
+    "inspect_base": {
+      "description": "View application, asset, and historical inspection reports, and export reports.",
+      "name": "Inspection Access Permission"
+    },
+    "inspect_baseline_modify": {
+      "description": "Maintain baseline template hierarchies, descriptions, and editing permissions.",
+      "name": "Baseline Inspection Management Permission"
+    },
+    "inspect_baseline_template_modify": {
+      "name": "Baseline Inspection Template Permission"
+    },
+    "inspect_baseline_view": {
+      "description": "View baseline inspections, create inspection jobs, and generate baseline drafts.",
+      "name": "Baseline Inspection View Permission"
+    },
+    "inspect_config_file_modify": {
+      "description": "Add and delete file paths and clean up files.",
+      "name": "Configuration File Management Permission"
+    },
+    "inspect_execute": {
+      "description": "Start individual and batch inspection jobs.",
+      "name": "Individual and Batch Inspection Execution Permission"
+    },
+    "inspect_modify": {
+      "description": "Configure threshold rules and predefine inspection tools for models.",
+      "name": "Inspection Administration Permission"
+    },
+    "inspect_resourcecenter_account_modify": {
+      "description": "Manage accounts, account protocols, and account tags in the Inspection module resource center.",
+      "name": "Inspection Resource Center Account Management Permission"
+    },
+    "inspect_resourcecenter_resource_view": {
+      "description": "View the asset list in the Inspection module resource center.",
+      "name": "Inspection Resource Center Asset List View Permission"
+    },
+    "inspect_resourcecenter_tag_modify": {
+      "description": "Add, modify, and delete tags in the Inspection module resource center.",
+      "name": "Inspection Resource Center Tag Management Permission"
+    },
+    "inspect_resourcecenter_view_modify": {
+      "description": "Add, modify, copy, and delete views in the Inspection module resource center, and view their data.",
+      "name": "Inspection Resource Center View Settings Permission"
+    },
+    "inspect_schedule_execute": {
+      "description": "Start scheduled inspection jobs.",
+      "name": "Scheduled Inspection Execution Permission"
+    }
+  },
+  "nfia": {
+    "inspect_baseline_template_modify": {
+      "getauthdisplayname": "Baseline Management Permissions",
+      "getauthintroduction": "Used to maintain baseline template hierarchy, description, and edit authorization"
+    }
+  },
+  "nfie": {
+    "inspectdefinitionnotfoundedittargetexception": {
+      "inspectdefinitionnotfoundedittargetexception": "Inspection definition: {0} does not exist"
+    },
+    "inspectnewproblemcustomviewnotfoundedittargetexception": {
+      "inspectnewproblemcustomviewnotfoundedittargetexception": "The latest issue in the inspection is that the personal view classification {0} does not exist"
+    }
+  },
+  "term": {
+    "inspect": {
+      "inspectstatuslist": "Inspection status list"
+    }
+  }
+}
