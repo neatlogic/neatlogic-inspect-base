@@ -1,4 +1,12 @@
 {
+  "nfi": {
+    "jobsource": {
+      "inspect": "资产巡检",
+      "inspectapp": "应用巡检",
+      "scheduleinspect": "资产定时巡检",
+      "scheduleinspectapp": "应用定时巡检"
+    }
+  },
   "auth": {
     "inspect_base": {
       "description": "查看应用巡检报告、资产巡检报告、历史巡检报告、导出报告",
@@ -55,6 +63,7 @@
     }
   },
   "nfie": {
+    "inspectappreportnotreadyexception": "应用巡检父作业“{0}”尚未结束，暂不能下载报告",
     "inspectdefinitionnotfoundedittargetexception": {
       "inspectdefinitionnotfoundedittargetexception": "巡检定义：{0}不存在"
     },

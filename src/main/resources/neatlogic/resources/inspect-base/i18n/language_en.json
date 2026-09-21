@@ -1,4 +1,12 @@
 {
+  "nfi": {
+    "jobsource": {
+      "inspect": "Asset Inspection",
+      "inspectapp": "Application Inspection",
+      "scheduleinspect": "Scheduled Asset Inspection",
+      "scheduleinspectapp": "Scheduled Application Inspection"
+    }
+  },
   "auth": {
     "inspect_base": {
       "description": "View application, asset, and historical inspection reports, and export reports.",
@@ -55,6 +63,7 @@
     }
   },
   "nfie": {
+    "inspectappreportnotreadyexception": "Application inspection parent job \"{0}\" has not finished. The report is not available yet.",
     "inspectdefinitionnotfoundedittargetexception": {
       "inspectdefinitionnotfoundedittargetexception": "Inspection definition: {0} does not exist"
     },
