@@ -63,6 +63,7 @@
     }
   },
   "nfie": {
+    "inspectappparentjobinvalidexception": "Job \"{0}\" is not a valid application inspection parent job.",
     "inspectappreportnotreadyexception": "Application inspection parent job \"{0}\" has not finished. The report is not available yet.",
     "inspectdefinitionnotfoundedittargetexception": {
       "inspectdefinitionnotfoundedittargetexception": "Inspection definition: {0} does not exist"

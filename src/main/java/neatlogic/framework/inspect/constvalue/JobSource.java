@@ -36,6 +36,11 @@ public enum JobSource implements IAutoexecJobSource {
         return $.t(text);
     }
 
+    @Override
+    public boolean isBatch() {
+        return this == INSPECT_APP || this == SCHEDULE_INSPECT_APP;
+    }
+
     public static String getText(String _status) {
         for (JobSource s : JobSource.values()) {
             if (s.getValue().equals(_status)) {

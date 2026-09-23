@@ -63,6 +63,7 @@
     }
   },
   "nfie": {
+    "inspectappparentjobinvalidexception": "作业“{0}”不是有效的应用巡检父作业",
     "inspectappreportnotreadyexception": "应用巡检父作业“{0}”尚未结束，暂不能下载报告",
     "inspectdefinitionnotfoundedittargetexception": {
       "inspectdefinitionnotfoundedittargetexception": "巡检定义：{0}不存在"
