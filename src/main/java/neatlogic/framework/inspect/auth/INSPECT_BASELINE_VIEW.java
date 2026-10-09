@@ -18,6 +18,9 @@
 package neatlogic.framework.inspect.auth;
 
 import neatlogic.framework.auth.core.AuthBase;
+import neatlogic.framework.common.constvalue.systemuser.ISystemUser;
+import neatlogic.framework.common.constvalue.systemuser.SystemUser;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -47,5 +50,10 @@ public class INSPECT_BASELINE_VIEW extends AuthBase {
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
         return Collections.singletonList(INSPECT_BASE.class);
+    }
+
+    @Override
+    public List<ISystemUser> getDefaultSystemUserList() {
+        return List.of(SystemUser.AUTOEXEC);
     }
 }
