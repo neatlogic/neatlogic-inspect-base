@@ -1,12 +1,4 @@
 {
-  "nfi": {
-    "jobsource": {
-      "inspect": "Asset Inspection",
-      "inspectapp": "Application Inspection",
-      "scheduleinspect": "Scheduled Asset Inspection",
-      "scheduleinspectapp": "Scheduled Application Inspection"
-    }
-  },
   "auth": {
     "inspect_base": {
       "description": "View application, asset, and historical inspection reports, and export reports.",
@@ -54,6 +46,14 @@
     "inspect_schedule_execute": {
       "description": "Start scheduled inspection jobs.",
       "name": "Scheduled Inspection Execution Permission"
+    }
+  },
+  "nfi": {
+    "jobsource": {
+      "inspect": "Asset Inspection",
+      "inspectapp": "Application Inspection",
+      "scheduleinspect": "Scheduled Asset Inspection",
+      "scheduleinspectapp": "Scheduled Application Inspection"
     }
   },
   "nfia": {
